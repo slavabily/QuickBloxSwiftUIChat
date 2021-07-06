@@ -6,14 +6,43 @@
 //
 
 import UIKit
+import UserNotifications
+import Quickblox
+ 
+struct CredentialsConstant {
+    static let applicationID:UInt = 92137
+    static let authKey = "bNR4tHJh6ejLP5M"
+    static let authSecret = "OR7Lc9SpNRBuFAa"
+    static let accountKey = "hiaW8XawsCJrHarjYmpz"
+}
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        // Set QuickBlox credentials (You must create application in admin.quickblox.com).
+        QBSettings.applicationID = CredentialsConstant.applicationID
+        QBSettings.authKey = CredentialsConstant.authKey
+        QBSettings.authSecret = CredentialsConstant.authSecret
+        QBSettings.accountKey = CredentialsConstant.accountKey
+        
+        // enabling carbons for chat
+        QBSettings.carbonsEnabled = true
+        // Enables Quickblox REST API calls debug console output.
+        QBSettings.logLevel = .debug
+        // Enables detailed XMPP logging in console output.
+        QBSettings.enableXMPPLogging()
+        QBSettings.disableFileLogging()
+        QBSettings.autoReconnectEnabled = true
+        QBSettings.streamManagementSendMessageTimeout = 0
+        
+        let center = UNUserNotificationCenter.current()
+        center.delegate = self
+        
+        
         return true
     }
 
