@@ -16,13 +16,17 @@ struct CredentialsConstant {
     static let accountKey = "hiaW8XawsCJrHarjYmpz"
 }
 
-@main
+@UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
-
-
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+    
+    var window: UIWindow?
+    
+    func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        
+        application.applicationIconBadgeNumber = 0
+        window?.backgroundColor = .white;
         // Set QuickBlox credentials (You must create application in admin.quickblox.com).
         QBSettings.applicationID = CredentialsConstant.applicationID
         QBSettings.authKey = CredentialsConstant.authKey
@@ -37,29 +41,50 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         QBSettings.enableXMPPLogging()
         QBSettings.disableFileLogging()
         QBSettings.autoReconnectEnabled = true
-        QBSettings.streamManagementSendMessageTimeout = 0
         
         let center = UNUserNotificationCenter.current()
         center.delegate = self
         
-        
         return true
     }
-
-    // MARK: UISceneSession Lifecycle
-
-    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        // Called when a new scene session is being created.
-        // Use this method to select a configuration to create the new scene with.
-        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        // Logging out from chat.
+//        ChatManager.instance.disconnect()
     }
-
-    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-        // Called when the user discards a scene session.
-        // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+    
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        // Logging in to chat.
+//        ChatManager.instance.connect()
     }
+    
+    //MARK: - UNUserNotification
+    func application(_ application: UIApplication,
+                     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        
+        guard let identifierForVendor = UIDevice.current.identifierForVendor else {
+            return
+        }
+        
+        let deviceIdentifier = identifierForVendor.uuidString
+        let subscription = QBMSubscription()
+        subscription.notificationChannel = .APNS
+        subscription.deviceUDID = deviceIdentifier
+        subscription.deviceToken = deviceToken
+        QBRequest.createSubscription(subscription, successBlock: { response, objects in
+        }, errorBlock: { response in
+            debugPrint("[AppDelegate] createSubscription error: \(String(describing: response.error))")
+        })
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        debugPrint("[AppDelegate] Unable to register for remote notifications: \(error.localizedDescription)")
+    }
+}
 
-
+extension UIApplication {
+    static var appVersion: String? {
+        return Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
+    }
 }
 

@@ -10,10 +10,17 @@
 		4B7D987E2B9467433620794E /* Pods_QuickBloxSwiftUIChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EBB461213BB4D0CA62FEF10 /* Pods_QuickBloxSwiftUIChat.framework */; };
 		F9175E8A26944F4900403617 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9175E8926944F4900403617 /* AppDelegate.swift */; };
 		F9175E8C26944F4900403617 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9175E8B26944F4900403617 /* SceneDelegate.swift */; };
-		F9175E8E26944F4900403617 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9175E8D26944F4900403617 /* ContentView.swift */; };
 		F9175E9026944F4F00403617 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9175E8F26944F4F00403617 /* Assets.xcassets */; };
 		F9175E9326944F4F00403617 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9175E9226944F4F00403617 /* Preview Assets.xcassets */; };
 		F9175E9626944F4F00403617 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9175E9426944F4F00403617 /* LaunchScreen.storyboard */; };
+		F9AA9EA82695C243008CF21B /* UIButton+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AA9EA72695C243008CF21B /* UIButton+Extention.swift */; };
+		F9AA9EAE2695C575008CF21B /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AA9EAD2695C575008CF21B /* Reachability.swift */; };
+		F9AA9EB22695D576008CF21B /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AA9EB12695D576008CF21B /* Profile.swift */; };
+		F9AA9EB52695D81C008CF21B /* UIViewController+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AA9EB42695D81C008CF21B /* UIViewController+Extention.swift */; };
+		F9AAAF702698570500F18774 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AAAF6F2698570500F18774 /* RootView.swift */; };
+		F9AAAF722698598A00F18774 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AAAF712698598A00F18774 /* UserSettings.swift */; };
+		F9AAAF8226986D7500F18774 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AAAF8126986D7500F18774 /* AuthView.swift */; };
+		F9AAAF8426986D8A00F18774 /* DialogsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AAAF8326986D8A00F18774 /* DialogsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,11 +30,19 @@
 		F9175E8626944F4900403617 /* QuickBloxSwiftUIChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickBloxSwiftUIChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9175E8926944F4900403617 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F9175E8B26944F4900403617 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F9175E8D26944F4900403617 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F9175E8F26944F4F00403617 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F9175E9226944F4F00403617 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F9175E9526944F4F00403617 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F9175E9726944F4F00403617 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F9AA9EA72695C243008CF21B /* UIButton+Extention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Extention.swift"; sourceTree = "<group>"; };
+		F9AA9EAD2695C575008CF21B /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		F9AA9EB12695D576008CF21B /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		F9AA9EB42695D81C008CF21B /* UIViewController+Extention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extention.swift"; sourceTree = "<group>"; };
+		F9AA9EB72695EF28008CF21B /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		F9AAAF6F2698570500F18774 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		F9AAAF712698598A00F18774 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
+		F9AAAF8126986D7500F18774 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		F9AAAF8326986D8A00F18774 /* DialogsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,8 +97,13 @@
 			children = (
 				F9175E8926944F4900403617 /* AppDelegate.swift */,
 				F9175E8B26944F4900403617 /* SceneDelegate.swift */,
-				F9175E8D26944F4900403617 /* ContentView.swift */,
+				F9AAAF6F2698570500F18774 /* RootView.swift */,
+				F9AAAF712698598A00F18774 /* UserSettings.swift */,
+				F9175E9E2694DD3900403617 /* Views */,
+				F9AA9EAC2695C54A008CF21B /* Utils */,
+				F9AA9EB32695D57E008CF21B /* UserPorfile */,
 				F9175E8F26944F4F00403617 /* Assets.xcassets */,
+				F9AA9EB62695EE8E008CF21B /* Supporting Files */,
 				F9175E9426944F4F00403617 /* LaunchScreen.storyboard */,
 				F9175E9726944F4F00403617 /* Info.plist */,
 				F9175E9126944F4F00403617 /* Preview Content */,
@@ -97,6 +117,49 @@
 				F9175E9226944F4F00403617 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F9175E9E2694DD3900403617 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F9AAAF8126986D7500F18774 /* AuthView.swift */,
+				F9AAAF8326986D8A00F18774 /* DialogsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F9AA9EA62695C188008CF21B /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				F9AA9EB42695D81C008CF21B /* UIViewController+Extention.swift */,
+				F9AA9EA72695C243008CF21B /* UIButton+Extention.swift */,
+			);
+			path = Extentions;
+			sourceTree = "<group>";
+		};
+		F9AA9EAC2695C54A008CF21B /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				F9AA9EAD2695C575008CF21B /* Reachability.swift */,
+				F9AA9EA62695C188008CF21B /* Extentions */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		F9AA9EB32695D57E008CF21B /* UserPorfile */ = {
+			isa = PBXGroup;
+			children = (
+				F9AA9EB12695D576008CF21B /* Profile.swift */,
+			);
+			path = UserPorfile;
+			sourceTree = "<group>";
+		};
+		F9AA9EB62695EE8E008CF21B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F9AA9EB72695EF28008CF21B /* Header.h */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,9 +276,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9AAAF8426986D8A00F18774 /* DialogsView.swift in Sources */,
+				F9AA9EB22695D576008CF21B /* Profile.swift in Sources */,
 				F9175E8A26944F4900403617 /* AppDelegate.swift in Sources */,
+				F9AAAF722698598A00F18774 /* UserSettings.swift in Sources */,
 				F9175E8C26944F4900403617 /* SceneDelegate.swift in Sources */,
-				F9175E8E26944F4900403617 /* ContentView.swift in Sources */,
+				F9AA9EA82695C243008CF21B /* UIButton+Extention.swift in Sources */,
+				F9AAAF702698570500F18774 /* RootView.swift in Sources */,
+				F9AA9EAE2695C575008CF21B /* Reachability.swift in Sources */,
+				F9AA9EB52695D81C008CF21B /* UIViewController+Extention.swift in Sources */,
+				F9AAAF8226986D7500F18774 /* AuthView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,6 +436,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = slavabily.QuickBloxSwiftUIChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT_NAME}/Supporting Files/Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -388,6 +459,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = slavabily.QuickBloxSwiftUIChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT_NAME}/Supporting Files/Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
