@@ -21,6 +21,11 @@
 		F9AAAF722698598A00F18774 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AAAF712698598A00F18774 /* UserSettings.swift */; };
 		F9AAAF8226986D7500F18774 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AAAF8126986D7500F18774 /* AuthView.swift */; };
 		F9AAAF8426986D8A00F18774 /* DialogsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AAAF8326986D8A00F18774 /* DialogsView.swift */; };
+		F9F3449D269B59C300B33A2B /* DialogsConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F3449C269B59C300B33A2B /* DialogsConstant.swift */; };
+		F9F3449F269B5A7100B33A2B /* DialogTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F3449E269B5A7100B33A2B /* DialogTableViewCellModel.swift */; };
+		F9F344A2269B5F3300B33A2B /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F344A1269B5F3300B33A2B /* ChatManager.swift */; };
+		F9F344A4269B600800B33A2B /* String+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F344A3269B600800B33A2B /* String+Extention.swift */; };
+		F9F344A6269B66FE00B33A2B /* ChatStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F344A5269B66FE00B33A2B /* ChatStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +48,11 @@
 		F9AAAF712698598A00F18774 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		F9AAAF8126986D7500F18774 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		F9AAAF8326986D8A00F18774 /* DialogsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogsView.swift; sourceTree = "<group>"; };
+		F9F3449C269B59C300B33A2B /* DialogsConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogsConstant.swift; sourceTree = "<group>"; };
+		F9F3449E269B5A7100B33A2B /* DialogTableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogTableViewCellModel.swift; sourceTree = "<group>"; };
+		F9F344A1269B5F3300B33A2B /* ChatManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
+		F9F344A3269B600800B33A2B /* String+Extention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extention.swift"; sourceTree = "<group>"; };
+		F9F344A5269B66FE00B33A2B /* ChatStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,10 +112,11 @@
 				F9175E9E2694DD3900403617 /* Views */,
 				F9AA9EAC2695C54A008CF21B /* Utils */,
 				F9AA9EB32695D57E008CF21B /* UserPorfile */,
-				F9175E8F26944F4F00403617 /* Assets.xcassets */,
+				F9F344A0269B5F0000B33A2B /* ChatManager */,
 				F9AA9EB62695EE8E008CF21B /* Supporting Files */,
 				F9175E9426944F4F00403617 /* LaunchScreen.storyboard */,
 				F9175E9726944F4F00403617 /* Info.plist */,
+				F9175E8F26944F4F00403617 /* Assets.xcassets */,
 				F9175E9126944F4F00403617 /* Preview Content */,
 			);
 			path = QuickBloxSwiftUIChat;
@@ -122,8 +133,8 @@
 		F9175E9E2694DD3900403617 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F9AAAF8126986D7500F18774 /* AuthView.swift */,
-				F9AAAF8326986D8A00F18774 /* DialogsView.swift */,
+				F9F3449A269B58FF00B33A2B /* Authorisation */,
+				F9F3449B269B592E00B33A2B /* Dialogs */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -131,6 +142,7 @@
 		F9AA9EA62695C188008CF21B /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
+				F9F344A3269B600800B33A2B /* String+Extention.swift */,
 				F9AA9EB42695D81C008CF21B /* UIViewController+Extention.swift */,
 				F9AA9EA72695C243008CF21B /* UIButton+Extention.swift */,
 			);
@@ -160,6 +172,33 @@
 				F9AA9EB72695EF28008CF21B /* Header.h */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F9F3449A269B58FF00B33A2B /* Authorisation */ = {
+			isa = PBXGroup;
+			children = (
+				F9AAAF8126986D7500F18774 /* AuthView.swift */,
+			);
+			path = Authorisation;
+			sourceTree = "<group>";
+		};
+		F9F3449B269B592E00B33A2B /* Dialogs */ = {
+			isa = PBXGroup;
+			children = (
+				F9AAAF8326986D8A00F18774 /* DialogsView.swift */,
+				F9F3449C269B59C300B33A2B /* DialogsConstant.swift */,
+				F9F3449E269B5A7100B33A2B /* DialogTableViewCellModel.swift */,
+			);
+			path = Dialogs;
+			sourceTree = "<group>";
+		};
+		F9F344A0269B5F0000B33A2B /* ChatManager */ = {
+			isa = PBXGroup;
+			children = (
+				F9F344A5269B66FE00B33A2B /* ChatStorage.swift */,
+				F9F344A1269B5F3300B33A2B /* ChatManager.swift */,
+			);
+			path = ChatManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,12 +316,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9AAAF8426986D8A00F18774 /* DialogsView.swift in Sources */,
+				F9F344A2269B5F3300B33A2B /* ChatManager.swift in Sources */,
+				F9F3449F269B5A7100B33A2B /* DialogTableViewCellModel.swift in Sources */,
 				F9AA9EB22695D576008CF21B /* Profile.swift in Sources */,
 				F9175E8A26944F4900403617 /* AppDelegate.swift in Sources */,
+				F9F344A4269B600800B33A2B /* String+Extention.swift in Sources */,
 				F9AAAF722698598A00F18774 /* UserSettings.swift in Sources */,
 				F9175E8C26944F4900403617 /* SceneDelegate.swift in Sources */,
+				F9F3449D269B59C300B33A2B /* DialogsConstant.swift in Sources */,
 				F9AA9EA82695C243008CF21B /* UIButton+Extention.swift in Sources */,
 				F9AAAF702698570500F18774 /* RootView.swift in Sources */,
+				F9F344A6269B66FE00B33A2B /* ChatStorage.swift in Sources */,
 				F9AA9EAE2695C575008CF21B /* Reachability.swift in Sources */,
 				F9AA9EB52695D81C008CF21B /* UIViewController+Extention.swift in Sources */,
 				F9AAAF8226986D7500F18774 /* AuthView.swift in Sources */,

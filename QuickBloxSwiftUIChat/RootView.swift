@@ -12,9 +12,11 @@ struct RootView: View {
     @EnvironmentObject var settings: UserSettings
     
     var body: some View {
-        if settings.loggedIn {
+        if QBChat.instance.isConnected {
+            print("\n Already connected to the chat\n")
             return AnyView(DialogsView())
         } else {
+            print("\n Not connected to the chat\n")
             return AnyView(AuthView())
         }
     }
