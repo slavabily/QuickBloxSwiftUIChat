@@ -10,9 +10,9 @@
 		4B7D987E2B9467433620794E /* Pods_QuickBloxSwiftUIChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EBB461213BB4D0CA62FEF10 /* Pods_QuickBloxSwiftUIChat.framework */; };
 		F9175E8A26944F4900403617 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9175E8926944F4900403617 /* AppDelegate.swift */; };
 		F9175E8C26944F4900403617 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9175E8B26944F4900403617 /* SceneDelegate.swift */; };
-		F9175E9026944F4F00403617 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9175E8F26944F4F00403617 /* Assets.xcassets */; };
 		F9175E9326944F4F00403617 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9175E9226944F4F00403617 /* Preview Assets.xcassets */; };
 		F9175E9626944F4F00403617 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9175E9426944F4F00403617 /* LaunchScreen.storyboard */; };
+		F99E684F269D826E006FA332 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F99E684E269D826E006FA332 /* Images.xcassets */; };
 		F9AA9EA82695C243008CF21B /* UIButton+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AA9EA72695C243008CF21B /* UIButton+Extention.swift */; };
 		F9AA9EAE2695C575008CF21B /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AA9EAD2695C575008CF21B /* Reachability.swift */; };
 		F9AA9EB22695D576008CF21B /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AA9EB12695D576008CF21B /* Profile.swift */; };
@@ -35,10 +35,10 @@
 		F9175E8626944F4900403617 /* QuickBloxSwiftUIChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickBloxSwiftUIChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9175E8926944F4900403617 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F9175E8B26944F4900403617 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F9175E8F26944F4F00403617 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F9175E9226944F4F00403617 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F9175E9526944F4F00403617 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F9175E9726944F4F00403617 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F99E684E269D826E006FA332 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F9AA9EA72695C243008CF21B /* UIButton+Extention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Extention.swift"; sourceTree = "<group>"; };
 		F9AA9EAD2695C575008CF21B /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		F9AA9EB12695D576008CF21B /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
@@ -116,7 +116,7 @@
 				F9AA9EB62695EE8E008CF21B /* Supporting Files */,
 				F9175E9426944F4F00403617 /* LaunchScreen.storyboard */,
 				F9175E9726944F4F00403617 /* Info.plist */,
-				F9175E8F26944F4F00403617 /* Assets.xcassets */,
+				F99E684E269D826E006FA332 /* Images.xcassets */,
 				F9175E9126944F4F00403617 /* Preview Content */,
 			);
 			path = QuickBloxSwiftUIChat;
@@ -261,8 +261,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9175E9626944F4F00403617 /* LaunchScreen.storyboard in Resources */,
+				F99E684F269D826E006FA332 /* Images.xcassets in Resources */,
 				F9175E9326944F4F00403617 /* Preview Assets.xcassets in Resources */,
-				F9175E9026944F4F00403617 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
