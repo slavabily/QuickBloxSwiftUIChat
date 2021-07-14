@@ -41,9 +41,10 @@ struct DialogsView: View {
                                     }
                                 })
             .navigationBarTitle(navigationTitle, displayMode: .inline)
+            .blueNavigation
             .onAppear {
                 dialogs = chatManager.storage.dialogsSortByUpdatedAt()
-            }      
+            }
         }
     }
     

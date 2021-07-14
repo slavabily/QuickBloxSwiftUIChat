@@ -59,8 +59,10 @@ struct AuthView: View {
                 
             }
             .navigationBarTitle("Enter to chat", displayMode: .inline)
+            .blueNavigation
             .sheet(isPresented: $dialogsViewIsPresented, content: {
                  DialogsView()
+                    .allowAutoDismiss(false)
             })
             
         }   
