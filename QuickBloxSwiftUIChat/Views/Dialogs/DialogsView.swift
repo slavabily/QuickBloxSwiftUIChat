@@ -15,39 +15,6 @@ struct DialogsView: View {
     
     @State private var dialogs: [QBChatDialog] = []
     
-    var body: some View {
-        NavigationView {
-            List {
-                ForEach(cells, id: \.self) { cell in
-                    Text(cell.textLabelText)
-                }
-             }
-            .navigationBarItems(leading:
-                                    Button(action: {
-                                        didTapLogout()
-                                    }, label: {
-                                         Image("exit")
-                                    }),
-                                trailing: HStack {
-                                    Button {
-                                         
-                                    } label: {
-                                         
-                                    }
-                                    Button {
-                                        
-                                    } label: {
-                                        
-                                    }
-                                })
-            .navigationBarTitle(navigationTitle, displayMode: .inline)
-            .blueNavigation
-            .onAppear {
-                dialogs = chatManager.storage.dialogsSortByUpdatedAt()
-            }
-        }
-    }
-    
     private var navigationTitle: String {
         let currentUser = Profile()
         guard currentUser.isFull == true else {
@@ -61,6 +28,38 @@ struct DialogsView: View {
             DialogTableViewCellModel(dialog: $0)
         }
         return cells
+    }
+    
+    var body: some View {
+        NavigationView {
+            List {
+                ForEach(cells, id: \.self) { cell in
+                    Text(cell.textLabelText)
+                }
+             }
+            .navigationBarItems(leading:
+                                    Button(action: {
+                                        didTapLogout()
+                                    }, label: {
+                                         Image("exit")
+                                    }),
+                                trailing: HStack(spacing: 30) {
+                                    Button {
+                                         // TODO: navigation to info view
+                                    } label: {
+                                        Image(systemName: "info.circle")
+                                            .scaleEffect(1.5)
+                                    }
+                                    NavigationLink(destination: CreateNewDialogView()) {
+                                        Image("add")
+                                    }
+                                })
+            .navigationBarTitle(navigationTitle, displayMode: .inline)
+            .blueNavigation
+            .onAppear {
+                dialogs = chatManager.storage.dialogsSortByUpdatedAt()
+            }
+        }
     }
     
      private func didTapLogout() {

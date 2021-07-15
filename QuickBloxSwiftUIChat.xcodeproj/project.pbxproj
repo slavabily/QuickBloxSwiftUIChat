@@ -13,6 +13,8 @@
 		F9175E9326944F4F00403617 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9175E9226944F4F00403617 /* Preview Assets.xcassets */; };
 		F9175E9626944F4F00403617 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9175E9426944F4F00403617 /* LaunchScreen.storyboard */; };
 		F94411A9269ECC4B00C57B98 /* SheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94411A8269ECC4B00C57B98 /* SheetView.swift */; };
+		F94411AC269F06DF00C57B98 /* CreateNewDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94411AB269F06DF00C57B98 /* CreateNewDialogView.swift */; };
+		F9717AB726A0090F00AFB625 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9717AB626A0090F00AFB625 /* SearchBar.swift */; };
 		F99E684F269D826E006FA332 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F99E684E269D826E006FA332 /* Images.xcassets */; };
 		F99E6851269DBE7C006FA332 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99E6850269DBE7C006FA332 /* NavigationBar.swift */; };
 		F9AA9EA82695C243008CF21B /* UIButton+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AA9EA72695C243008CF21B /* UIButton+Extention.swift */; };
@@ -41,6 +43,8 @@
 		F9175E9526944F4F00403617 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F9175E9726944F4F00403617 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F94411A8269ECC4B00C57B98 /* SheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetView.swift; sourceTree = "<group>"; };
+		F94411AB269F06DF00C57B98 /* CreateNewDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewDialogView.swift; sourceTree = "<group>"; };
+		F9717AB626A0090F00AFB625 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		F99E684E269D826E006FA332 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F99E6850269DBE7C006FA332 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		F9AA9EA72695C243008CF21B /* UIButton+Extention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Extention.swift"; sourceTree = "<group>"; };
@@ -86,6 +90,16 @@
 				5EBB461213BB4D0CA62FEF10 /* Pods_QuickBloxSwiftUIChat.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F9063DDE269F665F0048A82F /* Views Customisation */ = {
+			isa = PBXGroup;
+			children = (
+				F99E6850269DBE7C006FA332 /* NavigationBar.swift */,
+				F94411A8269ECC4B00C57B98 /* SheetView.swift */,
+				F9717AB626A0090F00AFB625 /* SearchBar.swift */,
+			);
+			path = "Views Customisation";
 			sourceTree = "<group>";
 		};
 		F9175E7D26944F4800403617 = {
@@ -137,10 +151,20 @@
 		F9175E9E2694DD3900403617 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F9063DDE269F665F0048A82F /* Views Customisation */,
 				F9F3449A269B58FF00B33A2B /* Authorisation */,
 				F9F3449B269B592E00B33A2B /* Dialogs */,
+				F94411AA269F063F00C57B98 /* New Chat */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		F94411AA269F063F00C57B98 /* New Chat */ = {
+			isa = PBXGroup;
+			children = (
+				F94411AB269F06DF00C57B98 /* CreateNewDialogView.swift */,
+			);
+			path = "New Chat";
 			sourceTree = "<group>";
 		};
 		F9AA9EA62695C188008CF21B /* Extentions */ = {
@@ -192,8 +216,6 @@
 				F9AAAF8326986D8A00F18774 /* DialogsView.swift */,
 				F9F3449C269B59C300B33A2B /* DialogsConstant.swift */,
 				F9F3449E269B5A7100B33A2B /* DialogTableViewCellModel.swift */,
-				F99E6850269DBE7C006FA332 /* NavigationBar.swift */,
-				F94411A8269ECC4B00C57B98 /* SheetView.swift */,
 			);
 			path = Dialogs;
 			sourceTree = "<group>";
@@ -336,8 +358,10 @@
 				F9F344A6269B66FE00B33A2B /* ChatStorage.swift in Sources */,
 				F9AA9EAE2695C575008CF21B /* Reachability.swift in Sources */,
 				F9AA9EB52695D81C008CF21B /* UIViewController+Extention.swift in Sources */,
+				F9717AB726A0090F00AFB625 /* SearchBar.swift in Sources */,
 				F9AAAF8226986D7500F18774 /* AuthView.swift in Sources */,
 				F94411A9269ECC4B00C57B98 /* SheetView.swift in Sources */,
+				F94411AC269F06DF00C57B98 /* CreateNewDialogView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
