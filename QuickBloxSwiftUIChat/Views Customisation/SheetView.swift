@@ -105,6 +105,7 @@ struct ContentView: View {
         }
     }
 }
+
 struct ModalContent: View {
     @Environment(\.presentationMode) private var presentationMode
     

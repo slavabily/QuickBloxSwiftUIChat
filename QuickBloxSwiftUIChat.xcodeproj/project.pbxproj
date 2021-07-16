@@ -25,6 +25,7 @@
 		F9AAAF722698598A00F18774 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AAAF712698598A00F18774 /* UserSettings.swift */; };
 		F9AAAF8226986D7500F18774 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AAAF8126986D7500F18774 /* AuthView.swift */; };
 		F9AAAF8426986D8A00F18774 /* DialogsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AAAF8326986D8A00F18774 /* DialogsView.swift */; };
+		F9E2230A26A0B8A800A1ADCB /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E2230926A0B8A800A1ADCB /* ChatView.swift */; };
 		F9F3449D269B59C300B33A2B /* DialogsConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F3449C269B59C300B33A2B /* DialogsConstant.swift */; };
 		F9F3449F269B5A7100B33A2B /* DialogTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F3449E269B5A7100B33A2B /* DialogTableViewCellModel.swift */; };
 		F9F344A2269B5F3300B33A2B /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F344A1269B5F3300B33A2B /* ChatManager.swift */; };
@@ -56,6 +57,7 @@
 		F9AAAF712698598A00F18774 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		F9AAAF8126986D7500F18774 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		F9AAAF8326986D8A00F18774 /* DialogsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogsView.swift; sourceTree = "<group>"; };
+		F9E2230926A0B8A800A1ADCB /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		F9F3449C269B59C300B33A2B /* DialogsConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogsConstant.swift; sourceTree = "<group>"; };
 		F9F3449E269B5A7100B33A2B /* DialogTableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogTableViewCellModel.swift; sourceTree = "<group>"; };
 		F9F344A1269B5F3300B33A2B /* ChatManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				F9175E8B26944F4900403617 /* SceneDelegate.swift */,
 				F9AAAF6F2698570500F18774 /* RootView.swift */,
 				F9AAAF712698598A00F18774 /* UserSettings.swift */,
+				F9063DDE269F665F0048A82F /* Views Customisation */,
 				F9175E9E2694DD3900403617 /* Views */,
 				F9AA9EAC2695C54A008CF21B /* Utils */,
 				F9AA9EB32695D57E008CF21B /* UserPorfile */,
@@ -151,20 +154,20 @@
 		F9175E9E2694DD3900403617 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F9063DDE269F665F0048A82F /* Views Customisation */,
-				F9F3449A269B58FF00B33A2B /* Authorisation */,
-				F9F3449B269B592E00B33A2B /* Dialogs */,
-				F94411AA269F063F00C57B98 /* New Chat */,
+				F9F3449A269B58FF00B33A2B /* AuthorisationScreen */,
+				F9F3449B269B592E00B33A2B /* DialogsScreen */,
+				F94411AA269F063F00C57B98 /* NewDialogScreen */,
+				F9E2230826A0B87500A1ADCB /* ChatScreen */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		F94411AA269F063F00C57B98 /* New Chat */ = {
+		F94411AA269F063F00C57B98 /* NewDialogScreen */ = {
 			isa = PBXGroup;
 			children = (
 				F94411AB269F06DF00C57B98 /* CreateNewDialogView.swift */,
 			);
-			path = "New Chat";
+			path = NewDialogScreen;
 			sourceTree = "<group>";
 		};
 		F9AA9EA62695C188008CF21B /* Extentions */ = {
@@ -202,22 +205,30 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		F9F3449A269B58FF00B33A2B /* Authorisation */ = {
+		F9E2230826A0B87500A1ADCB /* ChatScreen */ = {
+			isa = PBXGroup;
+			children = (
+				F9E2230926A0B8A800A1ADCB /* ChatView.swift */,
+			);
+			path = ChatScreen;
+			sourceTree = "<group>";
+		};
+		F9F3449A269B58FF00B33A2B /* AuthorisationScreen */ = {
 			isa = PBXGroup;
 			children = (
 				F9AAAF8126986D7500F18774 /* AuthView.swift */,
 			);
-			path = Authorisation;
+			path = AuthorisationScreen;
 			sourceTree = "<group>";
 		};
-		F9F3449B269B592E00B33A2B /* Dialogs */ = {
+		F9F3449B269B592E00B33A2B /* DialogsScreen */ = {
 			isa = PBXGroup;
 			children = (
 				F9AAAF8326986D8A00F18774 /* DialogsView.swift */,
 				F9F3449C269B59C300B33A2B /* DialogsConstant.swift */,
 				F9F3449E269B5A7100B33A2B /* DialogTableViewCellModel.swift */,
 			);
-			path = Dialogs;
+			path = DialogsScreen;
 			sourceTree = "<group>";
 		};
 		F9F344A0269B5F0000B33A2B /* ChatManager */ = {
@@ -355,6 +366,7 @@
 				F9F3449D269B59C300B33A2B /* DialogsConstant.swift in Sources */,
 				F9AA9EA82695C243008CF21B /* UIButton+Extention.swift in Sources */,
 				F9AAAF702698570500F18774 /* RootView.swift in Sources */,
+				F9E2230A26A0B8A800A1ADCB /* ChatView.swift in Sources */,
 				F9F344A6269B66FE00B33A2B /* ChatStorage.swift in Sources */,
 				F9AA9EAE2695C575008CF21B /* Reachability.swift in Sources */,
 				F9AA9EB52695D81C008CF21B /* UIViewController+Extention.swift in Sources */,

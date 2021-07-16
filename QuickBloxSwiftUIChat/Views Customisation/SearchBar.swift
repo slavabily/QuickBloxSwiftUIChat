@@ -12,15 +12,13 @@
  }
  */
  
-
-
 import SwiftUI
 
 struct SearchBar: View {
     
     @Binding var text: String
      
-    @State private var isEditing = false
+    @Binding var isEditing: Bool
     
     var body: some View {
             HStack {
@@ -58,7 +56,7 @@ struct SearchBar: View {
                         self.isEditing = false
                         self.text = ""
                         // Dismiss the keyboard
-                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                        SearchBar.resignFirstResponder()
                     }) {
                         Text("Cancel")
                     }
@@ -68,10 +66,13 @@ struct SearchBar: View {
                 }
             }
         }
+    static func resignFirstResponder() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
 }
 
 struct SearchBar_Previews: PreviewProvider {
     static var previews: some View {
-        SearchBar(text: .constant(""))
+        SearchBar(text: .constant(""), isEditing: .constant(true))
     }
 }

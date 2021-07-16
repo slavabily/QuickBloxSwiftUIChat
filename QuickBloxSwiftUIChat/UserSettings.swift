@@ -9,6 +9,6 @@ import Foundation
 import Combine
 
 class UserSettings: ObservableObject {
-    @Published var loggedIn = false
+    @Published var connected = false
 }
 
