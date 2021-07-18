@@ -22,10 +22,7 @@ struct ChatView: View {
                     }))
                     .navigationBarBackButtonHidden(true)
                     .blueNavigation
-            }
-            
-            
-            
+            }       
      }
 }
 

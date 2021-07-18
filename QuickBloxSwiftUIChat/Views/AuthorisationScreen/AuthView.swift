@@ -37,33 +37,35 @@ struct AuthView: View {
     
     var body: some View {
         NavigationView {
-            Form {
-                Section(header: Text("Login")) {
-                    TextField("", text: $login)
-                }
-                Section(header: Text("Display name")) {
-                    TextField("", text: $displayName)
-                }
-                    Button("Login") {
-                                signUp(fullName: displayName, login: login)
+            VStack {
+                Form {
+                    Section(header: Text("Login")) {
+                        TextField("", text: $login)
                     }
-                    .font(.headline)
-                    .padding()
-                    .padding([.leading, .trailing], 50)
-                    .foregroundColor(.white)
-                    .background(Color.blue)
-                    .cornerRadius(30)
-                    .position(x: 150, y: 25)
+                    Section(header: Text("Display name")) {
+                        TextField("", text: $displayName)
+                    }
+                }
                 
+                Button("Login") {
+                    signUp(fullName: displayName, login: login)
+                }
+                .font(.headline)
+                .padding()
+                .padding([.leading, .trailing], 50)
+                .foregroundColor(.white)
+                .background(Color.blue)
+                .cornerRadius(30)
+                .position(x: 180 ,y: 25)
             }
             .navigationBarTitle("Enter to chat", displayMode: .inline)
             .blueNavigation
             .sheet(isPresented: $dialogsViewIsPresented, content: {
-                 DialogsView()
+                DialogsView()
                     .allowAutoDismiss(false)
             })
-            
-        }   
+        }
+        
     }
     
     //MARK: - Internal Methods

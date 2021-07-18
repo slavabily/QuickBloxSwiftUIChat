@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CreateNewDialogView: View {
     
-//    @EnvironmentObject var settings: UserSettings
+    @EnvironmentObject var settings: UserSettings
     
     @Environment(\.presentationMode) var presentationMode
     
@@ -31,7 +31,9 @@ struct CreateNewDialogView: View {
                     Text(user.fullName!)
                 }
             }
-            .sheet(isPresented: $chatViewIsShown, content: {
+            .sheet(isPresented: $chatViewIsShown, onDismiss: {
+                presentationMode.wrappedValue.dismiss()
+            }, content: {
                 ChatView()
                     .allowAutoDismiss { false }
             })
@@ -51,14 +53,7 @@ struct CreateNewDialogView: View {
             }, label: {
                  Text("Create")
             }))
-//            .environmentObject(settings)
-//            .onAppear {
-//                if settings.connected {
-//
-//                }
-//            }
         }
-        
     }
     
     func createChatButtonPressed() {
