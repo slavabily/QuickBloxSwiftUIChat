@@ -15,6 +15,8 @@ struct DialogsView: View {
     
     @State private var dialogs: [QBChatDialog] = []
     
+    @State var cndvIsPresented = false
+    
     private var navigationTitle: String {
         let currentUser = Profile()
         guard currentUser.isFull == true else {
@@ -50,7 +52,9 @@ struct DialogsView: View {
                                         Image(systemName: "info.circle")
                                             .scaleEffect(1.5)
                                     }
-                                    NavigationLink(destination: CreateNewDialogView()) {
+                                    Button {
+                                        cndvIsPresented.toggle()
+                                    } label: {
                                         Image("add")
                                     }
                                 })
@@ -58,6 +62,9 @@ struct DialogsView: View {
             .blueNavigation
             .onAppear {
                 dialogs = chatManager.storage.dialogsSortByUpdatedAt()
+            }
+            .sheet(isPresented: $cndvIsPresented) {
+                CreateNewDialogView()
             }
         }
     }

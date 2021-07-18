@@ -44,8 +44,6 @@ struct AuthView: View {
                 Section(header: Text("Display name")) {
                     TextField("", text: $displayName)
                 }
-                
-                 
                     Button("Login") {
                                 signUp(fullName: displayName, login: login)
                     }

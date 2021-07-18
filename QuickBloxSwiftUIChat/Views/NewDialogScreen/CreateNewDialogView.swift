@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CreateNewDialogView: View {
     
+//    @EnvironmentObject var settings: UserSettings
+    
     @Environment(\.presentationMode) var presentationMode
     
     @State private var users : [QBUUser] = []
@@ -21,34 +23,42 @@ struct CreateNewDialogView: View {
     @State private var chatViewIsShown = false
  
     var body: some View {
-        
-        VStack {
-            SearchBar(text: $searchBarText, isEditing: $cancelSearchButtonisShown)
- 
-            List(users.filter({ searchBarText.isEmpty ? true : $0.fullName!.contains(searchBarText)}), id: \.self) { user in
-                Text(user.fullName!)
+        NavigationView {
+            VStack {
+                SearchBar(text: $searchBarText, isEditing: $cancelSearchButtonisShown)
+     
+                List(users.filter({ searchBarText.isEmpty ? true : $0.fullName!.contains(searchBarText)}), id: \.self) { user in
+                    Text(user.fullName!)
+                }
             }
+            .sheet(isPresented: $chatViewIsShown, content: {
+                ChatView()
+                    .allowAutoDismiss { false }
+            })
+            .navigationBarTitle("New Chat", displayMode: .inline)
+            
+            .blueNavigation
+            
+            .navigationBarBackButtonHidden(true)
+            
+            .navigationBarItems(leading: Button(action: {
+                presentationMode.wrappedValue.dismiss()
+            }, label: {
+                Image("chevron")
+            }), trailing: Button(action: {
+                // create chat view here
+                createChatButtonPressed()
+            }, label: {
+                 Text("Create")
+            }))
+//            .environmentObject(settings)
+//            .onAppear {
+//                if settings.connected {
+//
+//                }
+//            }
         }
-        .sheet(isPresented: $chatViewIsShown, content: {
-            ChatView()
-                .allowAutoDismiss { false }
-        })
-        .navigationBarTitle("New Chat", displayMode: .inline)
         
-        .blueNavigation
-        
-        .navigationBarBackButtonHidden(true)
-        
-        .navigationBarItems(leading: Button(action: {
-            presentationMode.wrappedValue.dismiss()
-        }, label: {
-            Image("chevron")
-        }), trailing: Button(action: {
-            // create chat view here
-            createChatButtonPressed()
-        }, label: {
-             Text("Create")
-        }))
     }
     
     func createChatButtonPressed() {
