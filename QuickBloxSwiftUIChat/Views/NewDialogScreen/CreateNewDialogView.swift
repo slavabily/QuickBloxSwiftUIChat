@@ -7,6 +7,12 @@
 
 import SwiftUI
 
+struct CreateNewDialogConstant {
+    static let perPage:UInt = 100
+    static let newChat = "New Chat"
+    static let noUsers = "No user with that name"
+}
+
 struct CreateNewDialogView: View {
     
     @EnvironmentObject var settings: UserSettings
@@ -15,20 +21,32 @@ struct CreateNewDialogView: View {
     
     @State private var users : [QBUUser] = []
     private var selectedUsers: Set<QBUUser> = []
+    @State private var downloadedUsers : [QBUUser] = []
     private let chatManager = ChatManager.instance
+    @State private var currentFetchPage: UInt = 1
+    @State private var cancelFetch = false
     
     @State private var searchBarText = ""
     @State private var cancelSearchButtonisShown = false
     @State private var isSearch = false
     @State private var chatViewIsShown = false
+    
+    var users_: [QBUUser] {
+        if searchBarText.isEmpty {
+            return users
+        } else {
+            return users.filter { user in
+                user.fullName?.contains(searchBarText) ?? true
+            }
+        }
+     }
  
     var body: some View {
         NavigationView {
             VStack {
                 SearchBar(text: $searchBarText, isEditing: $cancelSearchButtonisShown)
-     
-                List(users.filter({ searchBarText.isEmpty ? true : $0.fullName!.contains(searchBarText)}), id: \.self) { user in
-                    Text(user.fullName!)
+                List(users_, id: \.self) {
+                    Text($0.fullName ?? "")
                 }
             }
             .sheet(isPresented: $chatViewIsShown, onDismiss: {
@@ -53,6 +71,9 @@ struct CreateNewDialogView: View {
             }, label: {
                  Text("Create")
             }))
+            .onAppear {
+                fetchUsers()
+            }
         }
     }
     
@@ -61,6 +82,39 @@ struct CreateNewDialogView: View {
         // and UI configuration as appropriate
         
         chatViewIsShown.toggle()
+    }
+    
+    private func fetchUsers() {
+        SVProgressHUD.show()
+        chatManager.fetchUsers(currentPage: currentFetchPage, perPage: CreateNewDialogConstant.perPage) { response, users, cancel in
+            SVProgressHUD.dismiss()
+            self.cancelFetch = cancel
+            if cancel == false {
+                self.currentFetchPage += 1
+            }
+            self.downloadedUsers.append(contentsOf: users)
+            self.setupUsers(self.downloadedUsers )
+        }
+    }
+    
+    private func setupUsers(_ users: [QBUUser]) {
+        var filteredUsers: [QBUUser] = []
+        let currentUser = Profile()
+        if currentUser.isFull == true {
+            filteredUsers = users.filter({$0.id != currentUser.ID})
+        }
+        
+        self.users = filteredUsers
+        if selectedUsers.isEmpty == false {
+            var usersSet = Set(users)
+            for user in selectedUsers {
+                if usersSet.contains(user) == false {
+                    self.users.insert(user, at: 0)
+                    usersSet.insert(user)
+                }
+            }
+        }
+//         checkCreateChatButtonState()
     }
 }
 

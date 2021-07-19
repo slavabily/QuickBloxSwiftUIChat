@@ -87,16 +87,16 @@ struct DialogsView: View {
         disconnectUser()
         #else
         QBRequest.subscriptions(successBlock: { (response, subscriptions) in
-            if let subscriptions = subscriptions {
-                for subscription in subscriptions {
-                    if let subscriptionsUIUD = subscriptions.first?.deviceUDID,
-                       subscriptionsUIUD == uuidString,
-                       subscription.notificationChannel == .APNS {
-                        self.unregisterSubscription(forUniqueDeviceIdentifier: uuidString)
-                        return
-                    }
-                }
-            }
+//            if let subscriptions = subscriptions {
+//                for subscription in subscriptions {
+//                    if let subscriptionsUIUD = subscriptions.first?.deviceUDID,
+//                       subscriptionsUIUD == uuidString,
+//                       subscription.notificationChannel == .APNS {
+//                        self.unregisterSubscription(forUniqueDeviceIdentifier: uuidString)
+//                        return
+//                    }
+//                }
+//            }
             self.disconnectUser()
             
         }) { (response) in
