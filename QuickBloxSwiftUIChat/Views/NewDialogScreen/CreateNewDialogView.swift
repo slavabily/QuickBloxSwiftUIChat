@@ -19,6 +19,8 @@ struct CreateNewDialogView: View {
     
     @Environment(\.presentationMode) var presentationMode
     
+    @StateObject var usersSelection = UsersSelection()
+    
     @State private var users : [QBUUser] = []
     private var selectedUsers: Set<QBUUser> = []
     @State private var downloadedUsers : [QBUUser] = []
@@ -45,8 +47,11 @@ struct CreateNewDialogView: View {
         NavigationView {
             VStack {
                 SearchBar(text: $searchBarText, isEditing: $cancelSearchButtonisShown)
-                List(users_, id: \.self) {
-                    Text($0.fullName ?? "")
+                List(users_, id: \.self) { user in
+                    UserCell(usersSelection: usersSelection, user: user)
+                        .onTapGesture {
+                            usersSelection.selection(of: user)
+                        }
                 }
             }
             .sheet(isPresented: $chatViewIsShown, onDismiss: {
