@@ -31,6 +31,7 @@ struct CreateNewDialogView: View {
     @State private var cancelSearchButtonisShown = false
     @State private var isSearch = false
     @State private var chatViewIsShown = false
+    @State private var dialogID: String!
     
     var users_: [QBUUser] {
         if searchBarText.isEmpty {
@@ -77,7 +78,7 @@ struct CreateNewDialogView: View {
             .sheet(isPresented: $chatViewIsShown, onDismiss: {
                 presentationMode.wrappedValue.dismiss()
             }, content: {
-                ChatView()
+                ChatView(dialogID: $dialogID)
                     .allowAutoDismiss { false }
             })
             .blueNavigation
@@ -93,19 +94,53 @@ struct CreateNewDialogView: View {
                 createChatButtonPressed()
             }, label: {
                  Text("Create")
-            }))
+            }).disabled(usersSelection.multiselection.isEmpty))
             .onAppear {
                 fetchUsers()
             }
         }
     }
-    
-    
+     
     func createChatButtonPressed() {
         //TODO: implement network request for chat creation
         // and UI configuration as appropriate
         
-        chatViewIsShown.toggle()
+        if Reachability.instance.networkConnectionStatus() == .notConnection {
+             // TODO: show alert view asking user to check internet connection
+            SVProgressHUD.dismiss()
+            return
+        }
+        let selectedUsers = Array(usersSelection.multiselection)
+        
+        let isPrivate = selectedUsers.count == 1
+        
+        if isPrivate {
+            // Creating private chat.
+            SVProgressHUD.show()
+            chatManager.storage.update(users: selectedUsers)
+            guard let user = selectedUsers.first else {
+                SVProgressHUD.dismiss()
+                return
+            }
+            chatManager.createPrivateDialog(withOpponent: user, completion: { (response, dialog) in
+                guard let d = dialog else {
+                    if let error = response?.error {
+                        SVProgressHUD.showError(withStatus: error.error?.localizedDescription)
+                    }
+                    return
+                }
+                SVProgressHUD.showSuccess(withStatus: "STR_DIALOG_CREATED".localized)
+                // TODO: submit opened new "dialog" to ChatView
+//                self.openNewDialog(dialog)
+                self.dialogID = d.id
+                chatViewIsShown.toggle()
+            })
+        } else {
+            print("Entering group dialog name...")
+//            self.performSegue(withIdentifier: "enterChatName", sender: nil)
+        }
+        
+        
     }
     
     private func fetchUsers() {
