@@ -22,7 +22,6 @@ struct CreateNewDialogView: View {
     @StateObject var usersSelection = UsersSelection()
     
     @State private var users : [QBUUser] = []
-    private var selectedUsers: Set<QBUUser> = []
     @State private var downloadedUsers : [QBUUser] = []
     private let chatManager = ChatManager.instance
     @State private var currentFetchPage: UInt = 1
@@ -42,10 +41,20 @@ struct CreateNewDialogView: View {
             }
         }
      }
+    
+    var navigationSubtitle: String {
+        var users = "users"
+        if usersSelection.multiselection.count == 1 {
+            users = "user"
+        }
+        let numberOfUsers = "\(usersSelection.multiselection.count) \(users) selected"
+        
+        return numberOfUsers
+    }
  
     var body: some View {
         NavigationView {
-            VStack {
+            VStack(alignment: .leading) {
                 SearchBar(text: $searchBarText, isEditing: $cancelSearchButtonisShown)
                 List(users_, id: \.self) { user in
                     UserCell(usersSelection: usersSelection, user: user)
@@ -54,14 +63,23 @@ struct CreateNewDialogView: View {
                         }
                 }
             }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) { 
+                    VStack {
+                        Text(CreateNewDialogConstant.newChat).font(.headline)
+                        Text(navigationSubtitle).font(.subheadline)
+                    }
+                    .foregroundColor(.white)
+                    
+                }
+            }
             .sheet(isPresented: $chatViewIsShown, onDismiss: {
                 presentationMode.wrappedValue.dismiss()
             }, content: {
                 ChatView()
                     .allowAutoDismiss { false }
             })
-            .navigationBarTitle("New Chat", displayMode: .inline)
-            
             .blueNavigation
             
             .navigationBarBackButtonHidden(true)
@@ -81,6 +99,7 @@ struct CreateNewDialogView: View {
             }
         }
     }
+    
     
     func createChatButtonPressed() {
         //TODO: implement network request for chat creation
@@ -110,9 +129,9 @@ struct CreateNewDialogView: View {
         }
         
         self.users = filteredUsers
-        if selectedUsers.isEmpty == false {
+        if usersSelection.multiselection.isEmpty == false {
             var usersSet = Set(users)
-            for user in selectedUsers {
+            for user in usersSelection.multiselection {
                 if usersSet.contains(user) == false {
                     self.users.insert(user, at: 0)
                     usersSet.insert(user)
