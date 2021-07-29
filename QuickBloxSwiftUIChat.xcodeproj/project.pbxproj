@@ -12,6 +12,9 @@
 		F9175E8C26944F4900403617 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9175E8B26944F4900403617 /* SceneDelegate.swift */; };
 		F9175E9326944F4F00403617 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9175E9226944F4F00403617 /* Preview Assets.xcassets */; };
 		F9175E9626944F4F00403617 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9175E9426944F4F00403617 /* LaunchScreen.storyboard */; };
+		F92F943626B086E70066F505 /* UILabel+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92F943526B086E70066F505 /* UILabel+Extention.swift */; };
+		F92F943826B087310066F505 /* ImageView+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92F943726B087310066F505 /* ImageView+Extention.swift */; };
+		F92F943A26B087B60066F505 /* Double+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92F943926B087B60066F505 /* Double+Extention.swift */; };
 		F932E22D26AC9CF500120BD4 /* UsersSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F932E22C26AC9CF500120BD4 /* UsersSelection.swift */; };
 		F932E22F26AC9FE000120BD4 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F932E22E26AC9FE000120BD4 /* UserCell.swift */; };
 		F94411A9269ECC4B00C57B98 /* SheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94411A8269ECC4B00C57B98 /* SheetView.swift */; };
@@ -45,6 +48,9 @@
 		F9175E9226944F4F00403617 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F9175E9526944F4F00403617 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F9175E9726944F4F00403617 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F92F943526B086E70066F505 /* UILabel+Extention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extention.swift"; sourceTree = "<group>"; };
+		F92F943726B087310066F505 /* ImageView+Extention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ImageView+Extention.swift"; sourceTree = "<group>"; };
+		F92F943926B087B60066F505 /* Double+Extention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+Extention.swift"; sourceTree = "<group>"; };
 		F932E22C26AC9CF500120BD4 /* UsersSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersSelection.swift; sourceTree = "<group>"; };
 		F932E22E26AC9FE000120BD4 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		F94411A8269ECC4B00C57B98 /* SheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetView.swift; sourceTree = "<group>"; };
@@ -166,6 +172,29 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		F92F943026B085600066F505 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				F92F943126B085730066F505 /* CustomUI */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		F92F943126B085730066F505 /* CustomUI */ = {
+			isa = PBXGroup;
+			children = (
+				F92F943226B085A50066F505 /* TitleViews */,
+			);
+			path = CustomUI;
+			sourceTree = "<group>";
+		};
+		F92F943226B085A50066F505 /* TitleViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TitleViews;
+			sourceTree = "<group>";
+		};
 		F94411AA269F063F00C57B98 /* NewDialogScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -179,6 +208,9 @@
 		F9AA9EA62695C188008CF21B /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
+				F92F943926B087B60066F505 /* Double+Extention.swift */,
+				F92F943726B087310066F505 /* ImageView+Extention.swift */,
+				F92F943526B086E70066F505 /* UILabel+Extention.swift */,
 				F9F344A3269B600800B33A2B /* String+Extention.swift */,
 				F9AA9EB42695D81C008CF21B /* UIViewController+Extention.swift */,
 				F9AA9EA72695C243008CF21B /* UIButton+Extention.swift */,
@@ -214,6 +246,7 @@
 		F9E2230826A0B87500A1ADCB /* ChatScreen */ = {
 			isa = PBXGroup;
 			children = (
+				F92F943026B085600066F505 /* Chat */,
 				F9E2230926A0B8A800A1ADCB /* ChatView.swift */,
 			);
 			path = ChatScreen;
@@ -367,15 +400,18 @@
 				F9AA9EB22695D576008CF21B /* Profile.swift in Sources */,
 				F9175E8A26944F4900403617 /* AppDelegate.swift in Sources */,
 				F9F344A4269B600800B33A2B /* String+Extention.swift in Sources */,
+				F92F943826B087310066F505 /* ImageView+Extention.swift in Sources */,
 				F9AAAF722698598A00F18774 /* UserSettings.swift in Sources */,
 				F9175E8C26944F4900403617 /* SceneDelegate.swift in Sources */,
 				F9F3449D269B59C300B33A2B /* DialogsConstant.swift in Sources */,
 				F9AA9EA82695C243008CF21B /* UIButton+Extention.swift in Sources */,
 				F9AAAF702698570500F18774 /* RootView.swift in Sources */,
+				F92F943A26B087B60066F505 /* Double+Extention.swift in Sources */,
 				F9E2230A26A0B8A800A1ADCB /* ChatView.swift in Sources */,
 				F932E22D26AC9CF500120BD4 /* UsersSelection.swift in Sources */,
 				F9F344A6269B66FE00B33A2B /* ChatStorage.swift in Sources */,
 				F9AA9EAE2695C575008CF21B /* Reachability.swift in Sources */,
+				F92F943626B086E70066F505 /* UILabel+Extention.swift in Sources */,
 				F9AA9EB52695D81C008CF21B /* UIViewController+Extention.swift in Sources */,
 				F9717AB726A0090F00AFB625 /* SearchBar.swift in Sources */,
 				F9AAAF8226986D7500F18774 /* AuthView.swift in Sources */,

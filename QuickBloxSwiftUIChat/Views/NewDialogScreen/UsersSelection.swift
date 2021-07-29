@@ -8,11 +8,11 @@
 import Foundation
 
 class UsersSelection: ObservableObject {
-    @Published var multiselection = Set<QBUUser>()
+    @Published var selectedUsers: Set<QBUUser> = []
     
     func isSelected(_ user: QBUUser) -> Bool {
-        for _ in multiselection {
-            if multiselection.contains(user) {
+        for _ in selectedUsers {
+            if selectedUsers.contains(user) {
                 return true
             } else {
                 return false
@@ -23,10 +23,10 @@ class UsersSelection: ObservableObject {
     
     func selection(of user: QBUUser) {
          
-        if multiselection.contains(user) {
-            multiselection.remove(user)
+        if selectedUsers.contains(user) {
+            selectedUsers.remove(user)
         } else {
-            multiselection.insert(user)
+            selectedUsers.insert(user)
         }
     }
 }

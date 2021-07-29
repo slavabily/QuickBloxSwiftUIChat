@@ -16,17 +16,28 @@ struct ChatView: View {
     /**
      *  This property is required when creating a ChatViewController.
      */
-    @Binding var dialogID: String! {
-        didSet {
-            self.dialog = chatManager.storage.dialog(withID: dialogID)
-        }
-    }
+    @Binding var dialogID: String!
+    
     @State private var dialog: QBChatDialog!
+    
+    @State private var currentUserID: UInt = 0
+    
+    @State private var opponentUser = QBUUser()
+    @State private var fullName = ""
  
     var body: some View {
             NavigationView {
                 Text("New dialogID: \(String(describing: dialogID))")
-                    .navigationBarTitle("Chat Name", displayMode: .inline)
+                    .navigationBarTitleDisplayMode(.inline)
+                    .toolbar {
+                        ToolbarItem(placement: .principal) {
+                            HStack {
+                                Label(fullName, systemImage: "person.crop.circle")
+                                Text(fullName)
+                            }
+                            .foregroundColor(.white)
+                        }
+                    }
                     .navigationBarItems(leading: Button(action: {
                         presentationMode.wrappedValue.dismiss()
                     }, label: {
@@ -34,12 +45,48 @@ struct ChatView: View {
                     }))
                     .navigationBarBackButtonHidden(true)
                     .blueNavigation
+                    .onAppear {
+                        self.dialog = chatManager.storage.dialog(withID: dialogID)
+                        print("The current dialog is: \(dialog!)")
+                        
+                        let currentUser = Profile()
+                        guard currentUser.isFull == true else {
+                            return
+                        }
+                        
+                        currentUserID = currentUser.ID
+                        setupTitleView()
+                    }
             }       
      }
-}
-
-struct ChatView_Previews: PreviewProvider {
-    static var previews: some View {
-        ChatView(dialogID: .constant("dialogID"))
+    
+    //MARK: - Setup
+    fileprivate func setupTitleView() {
+        if dialog.type == .private {
+            if let userID = dialog.occupantIDs?.filter({$0.uintValue != self.currentUserID}).first as? UInt {
+                if let opponentUser = chatManager.storage.user(withID: userID) {
+//                    chatPrivateTitleView.setupPrivateChatTitleView(opponentUser)
+                    self.opponentUser = opponentUser
+                    fullName = opponentUser.fullName ?? "Unknown user"
+                } else {
+                    ChatManager.instance.loadUser(userID) { (opponentUser) in
+                        if let opponentUser = opponentUser {
+                            
+                            self.opponentUser = opponentUser
+                            fullName = opponentUser.fullName ?? "Unknown user"
+                        }
+                    }
+                }
+            }
+            
+        } else {
+//            title = dialog.name
+        }
     }
 }
+
+//struct ChatView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ChatView(dialogID: .constant("dialogID"))
+//    }
+//}

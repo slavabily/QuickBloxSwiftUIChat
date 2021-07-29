@@ -14,7 +14,7 @@ struct UserCell: View {
     
     var body: some View {
         ZStack {
-            usersSelection.isSelected(user) ? Color.green : Color.white
+            usersSelection.isSelected(user) ? Color.gray : Color.white
             Text(user.fullName ?? "")
                 .padding()
         }

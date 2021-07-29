@@ -29,7 +29,6 @@ struct CreateNewDialogView: View {
     
     @State private var searchBarText = ""
     @State private var cancelSearchButtonisShown = false
-    @State private var isSearch = false
     @State private var chatViewIsShown = false
     @State private var dialogID: String!
     
@@ -45,10 +44,10 @@ struct CreateNewDialogView: View {
     
     var navigationSubtitle: String {
         var users = "users"
-        if usersSelection.multiselection.count == 1 {
+        if usersSelection.selectedUsers.count == 1 {
             users = "user"
         }
-        let numberOfUsers = "\(usersSelection.multiselection.count) \(users) selected"
+        let numberOfUsers = "\(usersSelection.selectedUsers.count) \(users) selected"
         
         return numberOfUsers
     }
@@ -94,7 +93,7 @@ struct CreateNewDialogView: View {
                 createChatButtonPressed()
             }, label: {
                  Text("Create")
-            }).disabled(usersSelection.multiselection.isEmpty))
+            }).disabled(usersSelection.selectedUsers.isEmpty))
             .onAppear {
                 fetchUsers()
             }
@@ -110,7 +109,7 @@ struct CreateNewDialogView: View {
             SVProgressHUD.dismiss()
             return
         }
-        let selectedUsers = Array(usersSelection.multiselection)
+        let selectedUsers = Array(usersSelection.selectedUsers)
         
         let isPrivate = selectedUsers.count == 1
         
@@ -130,17 +129,13 @@ struct CreateNewDialogView: View {
                     return
                 }
                 SVProgressHUD.showSuccess(withStatus: "STR_DIALOG_CREATED".localized)
-                // TODO: submit opened new "dialog" to ChatView
-//                self.openNewDialog(dialog)
                 self.dialogID = d.id
                 chatViewIsShown.toggle()
             })
         } else {
+            // Creating group chat
             print("Entering group dialog name...")
-//            self.performSegue(withIdentifier: "enterChatName", sender: nil)
-        }
-        
-        
+        }     
     }
     
     private func fetchUsers() {
@@ -162,18 +157,16 @@ struct CreateNewDialogView: View {
         if currentUser.isFull == true {
             filteredUsers = users.filter({$0.id != currentUser.ID})
         }
-        
         self.users = filteredUsers
-        if usersSelection.multiselection.isEmpty == false {
+        if usersSelection.selectedUsers.isEmpty == false {
             var usersSet = Set(users)
-            for user in usersSelection.multiselection {
+            for user in usersSelection.selectedUsers {
                 if usersSet.contains(user) == false {
                     self.users.insert(user, at: 0)
                     usersSet.insert(user)
                 }
             }
         }
-//         checkCreateChatButtonState()
     }
 }
 
