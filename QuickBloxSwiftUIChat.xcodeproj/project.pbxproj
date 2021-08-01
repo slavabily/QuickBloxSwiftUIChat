@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4B7D987E2B9467433620794E /* Pods_QuickBloxSwiftUIChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EBB461213BB4D0CA62FEF10 /* Pods_QuickBloxSwiftUIChat.framework */; };
+		F90E34FC26B43ED5006A72EA /* ChatDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E34FB26B43ED4006A72EA /* ChatDataSource.swift */; };
+		F90E34FE26B4401A006A72EA /* Date+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E34FD26B4401A006A72EA /* Date+Extention.swift */; };
 		F9175E8A26944F4900403617 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9175E8926944F4900403617 /* AppDelegate.swift */; };
 		F9175E8C26944F4900403617 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9175E8B26944F4900403617 /* SceneDelegate.swift */; };
 		F9175E9326944F4F00403617 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9175E9226944F4F00403617 /* Preview Assets.xcassets */; };
@@ -42,6 +44,8 @@
 		378254D46F1165A75590FD74 /* Pods-QuickBloxSwiftUIChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickBloxSwiftUIChat.debug.xcconfig"; path = "Target Support Files/Pods-QuickBloxSwiftUIChat/Pods-QuickBloxSwiftUIChat.debug.xcconfig"; sourceTree = "<group>"; };
 		5EBB461213BB4D0CA62FEF10 /* Pods_QuickBloxSwiftUIChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickBloxSwiftUIChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F627DC160295F7B2197785A8 /* Pods-QuickBloxSwiftUIChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickBloxSwiftUIChat.release.xcconfig"; path = "Target Support Files/Pods-QuickBloxSwiftUIChat/Pods-QuickBloxSwiftUIChat.release.xcconfig"; sourceTree = "<group>"; };
+		F90E34FB26B43ED4006A72EA /* ChatDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatDataSource.swift; sourceTree = "<group>"; };
+		F90E34FD26B4401A006A72EA /* Date+Extention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extention.swift"; sourceTree = "<group>"; };
 		F9175E8626944F4900403617 /* QuickBloxSwiftUIChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickBloxSwiftUIChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9175E8926944F4900403617 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F9175E8B26944F4900403617 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +118,14 @@
 			path = "Views Customisation";
 			sourceTree = "<group>";
 		};
+		F90E34FA26B43E15006A72EA /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				F90E34FB26B43ED4006A72EA /* ChatDataSource.swift */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
 		F9175E7D26944F4800403617 = {
 			isa = PBXGroup;
 			children = (
@@ -175,24 +187,8 @@
 		F92F943026B085600066F505 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				F92F943126B085730066F505 /* CustomUI */,
 			);
 			path = Chat;
-			sourceTree = "<group>";
-		};
-		F92F943126B085730066F505 /* CustomUI */ = {
-			isa = PBXGroup;
-			children = (
-				F92F943226B085A50066F505 /* TitleViews */,
-			);
-			path = CustomUI;
-			sourceTree = "<group>";
-		};
-		F92F943226B085A50066F505 /* TitleViews */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = TitleViews;
 			sourceTree = "<group>";
 		};
 		F94411AA269F063F00C57B98 /* NewDialogScreen */ = {
@@ -214,6 +210,7 @@
 				F9F344A3269B600800B33A2B /* String+Extention.swift */,
 				F9AA9EB42695D81C008CF21B /* UIViewController+Extention.swift */,
 				F9AA9EA72695C243008CF21B /* UIButton+Extention.swift */,
+				F90E34FD26B4401A006A72EA /* Date+Extention.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -246,6 +243,7 @@
 		F9E2230826A0B87500A1ADCB /* ChatScreen */ = {
 			isa = PBXGroup;
 			children = (
+				F90E34FA26B43E15006A72EA /* DataSource */,
 				F92F943026B085600066F505 /* Chat */,
 				F9E2230926A0B8A800A1ADCB /* ChatView.swift */,
 			);
@@ -400,11 +398,13 @@
 				F9AA9EB22695D576008CF21B /* Profile.swift in Sources */,
 				F9175E8A26944F4900403617 /* AppDelegate.swift in Sources */,
 				F9F344A4269B600800B33A2B /* String+Extention.swift in Sources */,
+				F90E34FE26B4401A006A72EA /* Date+Extention.swift in Sources */,
 				F92F943826B087310066F505 /* ImageView+Extention.swift in Sources */,
 				F9AAAF722698598A00F18774 /* UserSettings.swift in Sources */,
 				F9175E8C26944F4900403617 /* SceneDelegate.swift in Sources */,
 				F9F3449D269B59C300B33A2B /* DialogsConstant.swift in Sources */,
 				F9AA9EA82695C243008CF21B /* UIButton+Extention.swift in Sources */,
+				F90E34FC26B43ED5006A72EA /* ChatDataSource.swift in Sources */,
 				F9AAAF702698570500F18774 /* RootView.swift in Sources */,
 				F92F943A26B087B60066F505 /* Double+Extention.swift in Sources */,
 				F9E2230A26A0B8A800A1ADCB /* ChatView.swift in Sources */,

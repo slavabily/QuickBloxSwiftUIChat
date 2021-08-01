@@ -24,10 +24,37 @@ struct ChatView: View {
     
     @State private var opponentUser = QBUUser()
     @State private var fullName = ""
+    
+    @State private var dataSource: ChatDataSource = {
+        let dataSource = ChatDataSource()
+        return dataSource
+    }()
+    
+    @State var composedMessage: String = ""
  
     var body: some View {
             NavigationView {
-                Text("New dialogID: \(String(describing: dialogID))")
+                VStack {
+                    List {
+    //                    ForEach(dataSource.messages, id: \.self) { msg in
+    //                        Text(msg.text ?? "No text")
+    //                    }
+                        Text("test msg")
+                        Text("test msg")
+                        Text("test msg")
+                    }
+                    HStack {
+                        // this textField generates the value for the composedMessage @State var
+                        TextField("Message...", text: $composedMessage)
+                            .frame(minHeight: CGFloat(30))
+                        // the button triggers the sendMessage() function written in the end of current View
+                        Button(action: didPressSend) {
+                            Text("Send")
+                        }
+                    }
+                    .frame(minHeight: CGFloat(50)).padding()
+                }
+                
                     .navigationBarTitleDisplayMode(.inline)
                     .toolbar {
                         ToolbarItem(placement: .principal) {
@@ -60,6 +87,21 @@ struct ChatView: View {
             }       
      }
     
+    //MARK: Actions
+    private func didPressSend() {
+        if Reachability.instance.networkConnectionStatus() == .notConnection {
+//            showAlertView(LoginConstant.checkInternet, message: LoginConstant.checkInternetMessage)
+//            inputToolbar.toggleSendButtonEnabled(isUploaded: self.isUploading)
+            SVProgressHUD.dismiss()
+            return
+        }
+         
+//        if let messageText = currentlyComposedMessageText(), messageText.isEmpty == false {
+//            send(withMessageText: messageText)
+//        }
+    }
+    
+    
     //MARK: - Setup
     fileprivate func setupTitleView() {
         if dialog.type == .private {
@@ -85,8 +127,8 @@ struct ChatView: View {
     }
 }
 
-//struct ChatView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ChatView(dialogID: .constant("dialogID"))
-//    }
-//}
+struct ChatView_Previews: PreviewProvider {
+    static var previews: some View {
+        ChatView(dialogID: .constant("dialogID"))
+    }
+}
