@@ -25,10 +25,7 @@ struct ChatView: View {
     @State private var opponentUser = QBUUser()
     @State private var fullName = ""
     
-    @State private var dataSource: ChatDataSource = {
-        let dataSource = ChatDataSource()
-        return dataSource
-    }()
+    @StateObject private var dataSource = ChatDataSource()
     
     @State var composedMessage: String = ""
  
@@ -36,12 +33,9 @@ struct ChatView: View {
             NavigationView {
                 VStack {
                     List {
-    //                    ForEach(dataSource.messages, id: \.self) { msg in
-    //                        Text(msg.text ?? "No text")
-    //                    }
-                        Text("test msg")
-                        Text("test msg")
-                        Text("test msg")
+                        ForEach(dataSource.messages, id: \.self) {
+                            Text( $0.text ?? "No text")
+                        }
                     }
                     HStack {
                         // this textField generates the value for the composedMessage @State var
@@ -83,6 +77,7 @@ struct ChatView: View {
                         
                         currentUserID = currentUser.ID
                         setupTitleView()
+                        loadMessages(with: 0)
                     }
             }       
      }
@@ -96,9 +91,56 @@ struct ChatView: View {
             return
         }
          
-//        if let messageText = currentlyComposedMessageText(), messageText.isEmpty == false {
-//            send(withMessageText: messageText)
-//        }
+        if composedMessage.isEmpty == false {
+            send(withMessageText: composedMessage)
+        }
+    }
+    
+    private func send(withMessageText text: String) {
+        let message = QBChatMessage.markable()
+        message.text = text
+        message.senderID = currentUserID
+        message.dialogID = dialogID
+        message.deliveredIDs = [(NSNumber(value: currentUserID))]
+        message.readIDs = [(NSNumber(value: currentUserID))]
+        message.dateSent = Date()
+        message.customParameters["save_to_history"] = true
+        sendMessage(message: message)
+    }
+    
+    private func sendMessage(message: QBChatMessage) {
+        chatManager.send(message, to: dialog) { (error) in
+            if let error = error {
+                debugPrint("[ChatViewController] sendMessage error: \(error.localizedDescription)")
+                return
+            }
+            self.dataSource.addMessage(message)
+            self.finishSendingMessage(animated: true)
+        }
+    }
+    
+    private func finishSendingMessage(animated: Bool) {
+         
+        composedMessage = ""
+        
+        loadMessages(with: 0)
+    }
+    
+    private func loadMessages(with skip: Int = 0) {
+        SVProgressHUD.show()
+        chatManager.messages(withID: dialogID, skip: skip, limit: ChatManagerConstant.messagesLimitPerDialog, successCompletion: { (messages, cancel) in
+            
+            dataSource.messages = messages
+            
+            self.dataSource.addMessages(messages)
+            SVProgressHUD.dismiss()
+        }, errorHandler: { (error) in
+            if error == ChatManagerConstant.notFound {
+                self.dataSource.clear()
+                self.dialog.clearTypingStatusBlocks()
+            }
+            SVProgressHUD.dismiss()
+        })
     }
     
     

@@ -184,13 +184,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		F92F943026B085600066F505 /* Chat */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Chat;
-			sourceTree = "<group>";
-		};
 		F94411AA269F063F00C57B98 /* NewDialogScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -244,7 +237,6 @@
 			isa = PBXGroup;
 			children = (
 				F90E34FA26B43E15006A72EA /* DataSource */,
-				F92F943026B085600066F505 /* Chat */,
 				F9E2230926A0B8A800A1ADCB /* ChatView.swift */,
 			);
 			path = ChatScreen;

@@ -29,10 +29,10 @@ protocol ChatDataSourceDelegate: AnyObject {
                         action: ChatDataSourceAction)
 }
 
-class ChatDataSource {
+class ChatDataSource: ObservableObject {
     //MARK: - Properties
     weak var delegate: ChatDataSourceDelegate?
-    private(set) var messages: [QBChatMessage] = []
+    @Published var messages: [QBChatMessage] = []
     
     var messagesForRead: Set<QBChatMessage> = []
     
