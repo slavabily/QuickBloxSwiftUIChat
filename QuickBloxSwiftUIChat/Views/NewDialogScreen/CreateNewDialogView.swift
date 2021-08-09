@@ -101,8 +101,6 @@ struct CreateNewDialogView: View {
     }
      
     func createChatButtonPressed() {
-        //TODO: implement network request for chat creation
-        // and UI configuration as appropriate
         
         if Reachability.instance.networkConnectionStatus() == .notConnection {
              // TODO: show alert view asking user to check internet connection
@@ -122,14 +120,14 @@ struct CreateNewDialogView: View {
                 return
             }
             chatManager.createPrivateDialog(withOpponent: user, completion: { (response, dialog) in
-                guard let d = dialog else {
+                guard let dialog = dialog else {
                     if let error = response?.error {
                         SVProgressHUD.showError(withStatus: error.error?.localizedDescription)
                     }
                     return
                 }
                 SVProgressHUD.showSuccess(withStatus: "STR_DIALOG_CREATED".localized)
-                self.dialogID = d.id
+                self.dialogID = dialog.id
                 chatViewIsShown.toggle()
             })
         } else {

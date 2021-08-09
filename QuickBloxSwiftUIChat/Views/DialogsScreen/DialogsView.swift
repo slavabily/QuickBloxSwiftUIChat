@@ -13,7 +13,7 @@ struct DialogsView: View {
     
     private let chatManager = ChatManager.instance
     
-    @State private var dialogs: [QBChatDialog] = []
+    @StateObject var chatStorage = ChatStorage()
     
     @State var cndvIsPresented = false
     
@@ -25,18 +25,11 @@ struct DialogsView: View {
         return currentUser.fullName.count > 0 ? currentUser.fullName : currentUser.login
     }
     
-    private var cells: [DialogTableViewCellModel] {
-        let cells = dialogs.map {
-            DialogTableViewCellModel(dialog: $0)
-        }
-        return cells
-    }
-    
     var body: some View {
         NavigationView {
             List {
-                ForEach(cells, id: \.self) { cell in
-                    Text(cell.textLabelText)
+                ForEach(chatStorage.dialogs, id: \.self) { dialog in
+                    Text(dialog.name!)
                 }
              }
             .navigationBarItems(leading:
@@ -61,12 +54,23 @@ struct DialogsView: View {
             .navigationBarTitle(navigationTitle, displayMode: .inline)
             .blueNavigation
             .onAppear {
-                dialogs = chatManager.storage.dialogsSortByUpdatedAt()
+                fetchDialogs()
             }
             .sheet(isPresented: $cndvIsPresented) {
                 CreateNewDialogView()
             }
         }
+    }
+    
+    private func fetchDialogs() {
+        let responsePage = QBResponsePage(limit: 1, skip: 0)
+         QBRequest.dialogs(for: responsePage, extendedRequest: nil,
+                          successBlock: { response, dialogs, dialogsUsersIDs, page in
+ 
+                            chatStorage.update(dialogs:dialogs)
+        }, errorBlock: { response in
+            debugPrint("[ChatManager] loadDialog error: ...")
+        })
     }
     
      private func didTapLogout() {

@@ -9,9 +9,9 @@
 import UIKit
 import Quickblox
 
-class ChatStorage {
+class ChatStorage: ObservableObject {
     //MARK: - Properties
-    var dialogs: [QBChatDialog] = []
+    @Published var dialogs: [QBChatDialog] = []
     var users: [QBUUser] = []
     
     // MARK: - Public Methods
