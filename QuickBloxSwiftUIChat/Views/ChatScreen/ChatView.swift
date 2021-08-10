@@ -18,7 +18,7 @@ struct ChatView: View {
      */
     @Binding var dialogID: String!
     
-    @State private var dialog: QBChatDialog!
+    @State private var dialog: QBChatDialog?
     
     @State private var currentUserID: UInt = 0
     
@@ -26,6 +26,7 @@ struct ChatView: View {
     @State private var fullName = ""
     
     @StateObject private var dataSource = ChatDataSource()
+    @ObservedObject var chatStorage: ChatStorage
     
     @State var composedMessage: String = ""
  
@@ -67,7 +68,8 @@ struct ChatView: View {
                     .navigationBarBackButtonHidden(true)
                     .blueNavigation
                     .onAppear {
-                        self.dialog = chatManager.storage.dialog(withID: dialogID)
+//                        self.dialog = chatManager.storage.dialog(withID: dialogID)
+                        dialog = chatStorage.dialog(withID: dialogID)
                         print("The current dialog is: \(dialog!)")
                         
                         let currentUser = Profile()
@@ -109,7 +111,7 @@ struct ChatView: View {
     }
     
     private func sendMessage(message: QBChatMessage) {
-        chatManager.send(message, to: dialog) { (error) in
+        chatManager.send(message, to: dialog!) { (error) in
             if let error = error {
                 debugPrint("[ChatViewController] sendMessage error: \(error.localizedDescription)")
                 return
@@ -137,7 +139,7 @@ struct ChatView: View {
         }, errorHandler: { (error) in
             if error == ChatManagerConstant.notFound {
                 self.dataSource.clear()
-                self.dialog.clearTypingStatusBlocks()
+                self.dialog!.clearTypingStatusBlocks()
             }
             SVProgressHUD.dismiss()
         })
@@ -146,8 +148,8 @@ struct ChatView: View {
     
     //MARK: - Setup
     fileprivate func setupTitleView() {
-        if dialog.type == .private {
-            if let userID = dialog.occupantIDs?.filter({$0.uintValue != self.currentUserID}).first as? UInt {
+        if dialog!.type == .private {
+            if let userID = dialog!.occupantIDs?.filter({$0.uintValue != self.currentUserID}).first as? UInt {
                 if let opponentUser = chatManager.storage.user(withID: userID) {
 //                    chatPrivateTitleView.setupPrivateChatTitleView(opponentUser)
                     self.opponentUser = opponentUser
@@ -171,6 +173,6 @@ struct ChatView: View {
 
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatView(dialogID: .constant("dialogID"))
+        ChatView(dialogID: .constant("dialogID"), chatStorage: ChatStorage())
     }
 }

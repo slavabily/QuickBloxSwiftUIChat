@@ -7,6 +7,12 @@
 
 import SwiftUI
 
+extension String: Identifiable {
+    public var id: Int {
+        return String().count
+    }
+}
+
 struct DialogsView: View {
     
     @Environment(\.presentationMode) var presentationMode
@@ -16,6 +22,7 @@ struct DialogsView: View {
     @StateObject var chatStorage = ChatStorage()
     
     @State var cndvIsPresented = false
+    @State private var dialogID: String?
     
     private var navigationTitle: String {
         let currentUser = Profile()
@@ -30,6 +37,9 @@ struct DialogsView: View {
             List {
                 ForEach(chatStorage.dialogs, id: \.self) { dialog in
                     Text(dialog.name!)
+                        .onTapGesture {
+                            dialogID = dialog.id
+                        }
                 }
              }
             .navigationBarItems(leading:
@@ -57,7 +67,10 @@ struct DialogsView: View {
                 fetchDialogs()
             }
             .sheet(isPresented: $cndvIsPresented) {
-                CreateNewDialogView()
+                CreateNewDialogView(chatStorage: chatStorage)
+            }
+            .sheet(item: $dialogID) { _ in
+                ChatView(dialogID: $dialogID, chatStorage: chatStorage)
             }
         }
     }

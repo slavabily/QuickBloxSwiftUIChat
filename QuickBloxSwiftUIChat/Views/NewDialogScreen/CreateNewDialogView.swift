@@ -20,6 +20,7 @@ struct CreateNewDialogView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @StateObject var usersSelection = UsersSelection()
+    @ObservedObject var chatStorage: ChatStorage
     
     @State private var users : [QBUUser] = []
     @State private var downloadedUsers : [QBUUser] = []
@@ -77,7 +78,7 @@ struct CreateNewDialogView: View {
             .sheet(isPresented: $chatViewIsShown, onDismiss: {
                 presentationMode.wrappedValue.dismiss()
             }, content: {
-                ChatView(dialogID: $dialogID)
+                ChatView(dialogID: $dialogID, chatStorage: chatStorage)
                     .allowAutoDismiss { false }
             })
             .blueNavigation
@@ -114,7 +115,7 @@ struct CreateNewDialogView: View {
         if isPrivate {
             // Creating private chat.
             SVProgressHUD.show()
-            chatManager.storage.update(users: selectedUsers)
+            chatStorage.update(users: selectedUsers)
             guard let user = selectedUsers.first else {
                 SVProgressHUD.dismiss()
                 return
@@ -170,6 +171,6 @@ struct CreateNewDialogView: View {
 
 struct CreateNewDialogView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateNewDialogView()
+        CreateNewDialogView(chatStorage: ChatStorage())
     }
 }
