@@ -127,8 +127,11 @@ struct CreateNewDialogView: View {
                     }
                     return
                 }
-                SVProgressHUD.showSuccess(withStatus: "STR_DIALOG_CREATED".localized)
+                SVProgressHUD.showSuccess(withStatus: "STR_DIALOG_CREATED".localized)   
+                
+                chatStorage.dialogs.append(dialog)
                 self.dialogID = dialog.id
+//                chatManager.updateDialog(with: dialogID, with: QBChatMessage())
                 chatViewIsShown.toggle()
             })
         } else {

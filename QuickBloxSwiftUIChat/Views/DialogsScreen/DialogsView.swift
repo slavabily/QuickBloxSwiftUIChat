@@ -7,6 +7,17 @@
 
 import SwiftUI
 
+struct DialogsConstant {
+    static let dialogsPageLimit:Int = 100
+    static let segueGoToChat = "goToChat"
+    static let selectOpponents = "SelectOpponents"
+    static let infoSegue = "PresentInfoViewController"
+    static let deleteChats = "Delete Chats"
+    static let forward = "Forward to"
+    static let deleteDialogs = "deleteDialogs"
+    static let chats = "Chats"
+}
+
 extension String: Identifiable {
     public var id: Int {
         return String().count
@@ -76,7 +87,7 @@ struct DialogsView: View {
     }
     
     private func fetchDialogs() {
-        let responsePage = QBResponsePage(limit: 1, skip: 0)
+        let responsePage = QBResponsePage(limit: 50, skip: 0)
          QBRequest.dialogs(for: responsePage, extendedRequest: nil,
                           successBlock: { response, dialogs, dialogsUsersIDs, page in
  

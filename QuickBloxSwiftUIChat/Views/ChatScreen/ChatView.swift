@@ -117,6 +117,7 @@ struct ChatView: View {
                 return
             }
             self.dataSource.addMessage(message)
+            chatManager.updateDialog(with: dialogID, with: message)
             self.finishSendingMessage(animated: true)
         }
     }
@@ -151,7 +152,6 @@ struct ChatView: View {
         if dialog!.type == .private {
             if let userID = dialog!.occupantIDs?.filter({$0.uintValue != self.currentUserID}).first as? UInt {
                 if let opponentUser = chatManager.storage.user(withID: userID) {
-//                    chatPrivateTitleView.setupPrivateChatTitleView(opponentUser)
                     self.opponentUser = opponentUser
                     fullName = opponentUser.fullName ?? "Unknown user"
                 } else {
