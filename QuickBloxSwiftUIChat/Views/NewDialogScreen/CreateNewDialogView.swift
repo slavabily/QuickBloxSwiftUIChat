@@ -129,10 +129,16 @@ struct CreateNewDialogView: View {
                 }
                 SVProgressHUD.showSuccess(withStatus: "STR_DIALOG_CREATED".localized)   
                 
-                chatStorage.dialogs.append(dialog)
                 self.dialogID = dialog.id
-//                chatManager.updateDialog(with: dialogID, with: QBChatMessage())
-                chatViewIsShown.toggle()
+                
+                chatManager.updateDialog(with: dialogID, with: QBChatMessage())
+                if chatStorage.dialogs.contains(dialog) {
+                    chatViewIsShown.toggle()
+                } else {
+                    debugPrint("\n The dialog with \(dialog.name!) is not added ...")
+                    chatStorage.dialogs.append(dialog)
+                    chatViewIsShown.toggle()
+                }
             })
         } else {
             // Creating group chat
