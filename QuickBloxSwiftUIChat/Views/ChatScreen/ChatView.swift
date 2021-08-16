@@ -34,8 +34,22 @@ struct ChatView: View {
             NavigationView {
                 VStack {
                     List {
-                        ForEach(dataSource.messages, id: \.self) {
-                            Text( $0.text ?? "No text")
+                        ForEach(dataSource.messages, id: \.self) { message in
+                            if message.senderID != currentUserID, message.readIDs?.contains(NSNumber(value: currentUserID)) == false {
+                                HStack {
+                                    Group {
+                                        Text( message.text ?? "No text")
+                                    }
+                                }
+                            } else {
+                                HStack {
+                                    Spacer()
+                                    Group {
+                                        Text( message.text ?? "No text")
+                                    }
+                                }
+                            }
+                            
                         }
                     }
                     HStack {
