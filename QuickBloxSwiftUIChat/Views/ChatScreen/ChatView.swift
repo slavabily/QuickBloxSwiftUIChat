@@ -13,9 +13,6 @@ struct ChatView: View {
     
     private let chatManager = ChatManager.instance
     
-    /**
-     *  This property is required when creating a ChatViewController.
-     */
     @Binding var dialogID: String!
     
     @State private var dialog: QBChatDialog?
@@ -37,33 +34,44 @@ struct ChatView: View {
                         ForEach(dataSource.messages, id: \.self) { message in
                             if message.senderID != currentUserID, message.readIDs?.contains(NSNumber(value: currentUserID)) == false {
                                 HStack {
-                                    Group {
+                                    VStack(alignment: .leading) {
+                                        Text(opponentUser.fullName ?? "No name")
+                                            .font(.footnote)
                                         Text( message.text ?? "No text")
+                                            .bold()
+                                            .padding(10)
+                                            .foregroundColor(Color.white)
+                                            .background(Color.gray)
+                                            .cornerRadius(20)
+                                        
                                     }
                                 }
                             } else {
                                 HStack {
                                     Spacer()
-                                    Group {
+                                    VStack(alignment: .trailing) {
+                                        Text("You")
+                                            .font(.footnote)
                                         Text( message.text ?? "No text")
+                                            .bold()
+                                            .padding(10)
+                                            .foregroundColor(Color.white)
+                                            .background(Color.blue)
+                                            .cornerRadius(20)
                                     }
                                 }
                             }
-                            
                         }
                     }
                     HStack {
-                        // this textField generates the value for the composedMessage @State var
                         TextField("Message...", text: $composedMessage)
                             .frame(minHeight: CGFloat(30))
-                        // the button triggers the sendMessage() function written in the end of current View
                         Button(action: didPressSend) {
                             Text("Send")
                         }
                     }
                     .frame(minHeight: CGFloat(50)).padding()
                 }
-                
                     .navigationBarTitleDisplayMode(.inline)
                     .toolbar {
                         ToolbarItem(placement: .principal) {
