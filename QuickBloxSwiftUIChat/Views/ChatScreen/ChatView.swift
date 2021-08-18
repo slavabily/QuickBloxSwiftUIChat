@@ -7,6 +7,14 @@
 
 import SwiftUI
 
+extension View {
+    public func flip() -> some View {
+        return self
+            .rotationEffect(.radians(.pi))
+            .scaleEffect(x: -1, y: 1, anchor: .center)
+    }
+}
+
 struct ChatView: View {
     
     @Environment(\.presentationMode) var presentationMode
@@ -31,7 +39,7 @@ struct ChatView: View {
             NavigationView {
                 VStack {
                     List {
-                        ForEach(dataSource.messages, id: \.self) { message in
+                        ForEach(dataSource.messages.reversed(), id: \.self) { message in
                             if message.senderID != currentUserID, message.readIDs?.contains(NSNumber(value: currentUserID)) == false {
                                 HStack {
                                     VStack(alignment: .leading) {
@@ -42,10 +50,10 @@ struct ChatView: View {
                                             .padding(10)
                                             .foregroundColor(Color.white)
                                             .background(Color.gray)
-                                            .cornerRadius(20)
-                                        
+                                            .cornerRadius(20)  
                                     }
                                 }
+                                .flip()
                             } else {
                                 HStack {
                                     Spacer()
@@ -60,9 +68,11 @@ struct ChatView: View {
                                             .cornerRadius(20)
                                     }
                                 }
+                                .flip()
                             }
                         }
                     }
+                    .flip()
                     HStack {
                         TextField("Message...", text: $composedMessage)
                             .frame(minHeight: CGFloat(30))
