@@ -34,6 +34,8 @@ struct ChatView: View {
     @ObservedObject var chatStorage: ChatStorage
     
     @State var composedMessage: String = ""
+    
+    let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
  
     var body: some View {
             NavigationView {
@@ -50,7 +52,7 @@ struct ChatView: View {
                                             .padding(10)
                                             .foregroundColor(Color.white)
                                             .background(Color.gray)
-                                            .cornerRadius(20)  
+                                            .cornerRadius(20)
                                     }
                                 }
                                 .flip()
@@ -94,6 +96,7 @@ struct ChatView: View {
                     }
                     .navigationBarItems(leading: Button(action: {
                         presentationMode.wrappedValue.dismiss()
+                        timer.upstream.connect().cancel()
                     }, label: {
                          Image("chevron")
                     }))
@@ -111,8 +114,12 @@ struct ChatView: View {
                         
                         currentUserID = currentUser.ID
                         setupTitleView()
-                        loadMessages(with: 0)
+                        loadMessages()
                     }
+                    .onReceive(timer) { time in
+                     loadMessages()
+                    }
+                
             }       
      }
     
@@ -158,11 +165,10 @@ struct ChatView: View {
          
         composedMessage = ""
         
-        loadMessages(with: 0)
+        loadMessages()
     }
     
     private func loadMessages(with skip: Int = 0) {
-        SVProgressHUD.show()
         chatManager.messages(withID: dialogID, skip: skip, limit: ChatManagerConstant.messagesLimitPerDialog, successCompletion: { (messages, cancel) in
             
             dataSource.messages = messages
