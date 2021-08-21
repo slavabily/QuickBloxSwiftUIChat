@@ -77,7 +77,7 @@ class ChatStorage: ObservableObject {
     }
     
     func deleteDialog(withID ID: String) {
-        guard let index = dialogs.index(where: { $0.id == ID }) else {
+        guard let index = dialogs.firstIndex(where: { $0.id == ID }) else {
             return
         }
         dialogs.remove(at: index)

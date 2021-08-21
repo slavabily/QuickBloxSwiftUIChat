@@ -317,8 +317,8 @@ class ChatManager: NSObject {
                                         deletedObjectsIDs, notFoundObjectsIDs, wrongPermissionsObjectsIDs in
                                         
                                         self.storage.deleteDialog(withID: dialogId)
-                                        self.delegate?.chatManager(self, didUpdateStorage: "SA_STR_COMPLETED".localized)
-                                        completion?(nil)
+//                                        self.delegate?.chatManager(self, didUpdateStorage: "SA_STR_COMPLETED".localized)
+//                                        completion?(nil)
                                         
             }, errorBlock: { response in
                 if (response.status == .notFound || response.status == .forbidden), dialog.type != .publicGroup {

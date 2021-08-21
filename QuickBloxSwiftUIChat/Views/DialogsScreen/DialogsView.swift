@@ -52,16 +52,19 @@ struct DialogsView: View {
                             dialogID = dialog.id
                         }
                 }
-             }
+                .onDelete {
+                    deleteDialogs(at: $0)
+                }
+            }
             .navigationBarItems(leading:
                                     Button(action: {
                                         didTapLogout()
                                     }, label: {
-                                         Image("exit")
+                                        Image("exit")
                                     }),
                                 trailing: HStack(spacing: 30) {
                                     Button {
-                                         // TODO: navigation to info view
+                                        // TODO: navigation to info view
                                     } label: {
                                         Image(systemName: "info.circle")
                                             .scaleEffect(1.5)
@@ -84,6 +87,31 @@ struct DialogsView: View {
                 ChatView(dialogID: $dialogID, chatStorage: chatStorage)
             }
         }
+    }
+    
+    func deleteDialogs(at offsets: IndexSet) {
+        let i = Array<Int>(offsets)[0]
+            
+        let dialog = chatStorage.dialogs[i]
+        
+        guard let dialogID = dialog.id else {
+            return
+        }
+        
+        QBRequest.deleteDialogs(withIDs: Set([dialogID]),
+                                forAllUsers: false,
+                                successBlock: {
+                                    response,
+                                    deletedObjectsIDs, notFoundObjectsIDs, wrongPermissionsObjectsIDs in
+                                    
+                                    chatStorage.deleteDialog(withID: dialogID)
+                                    
+        }, errorBlock: { response in
+            if (response.status == .notFound || response.status == .forbidden), dialog.type != .publicGroup {
+                chatStorage.deleteDialog(withID: dialogID)
+            }
+            debugPrint(response.status)
+        })
     }
     
     private func fetchDialogs() {
