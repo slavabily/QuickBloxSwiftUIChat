@@ -40,7 +40,8 @@ struct ChatView: View {
     var body: some View {
             NavigationView {
                 VStack {
-                    List {
+                    ScrollView {
+                    LazyVStack(alignment: .leading) {
                         ForEach(dataSource.messages.reversed(), id: \.self) { message in
                             if message.senderID != currentUserID, message.readIDs?.contains(NSNumber(value: currentUserID)) == false {
                                 HStack {
@@ -75,6 +76,8 @@ struct ChatView: View {
                         }
                     }
                     .flip()
+                    }
+                    Spacer()
                     HStack {
                         TextField("Message...", text: $composedMessage)
                             .frame(minHeight: CGFloat(30))
