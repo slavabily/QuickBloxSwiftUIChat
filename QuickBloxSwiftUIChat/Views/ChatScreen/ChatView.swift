@@ -41,42 +41,46 @@ struct ChatView: View {
             NavigationView {
                 VStack {
                     ScrollView {
-                    LazyVStack(alignment: .leading) {
-                        ForEach(dataSource.messages.reversed(), id: \.self) { message in
-                            if message.senderID != currentUserID, message.readIDs?.contains(NSNumber(value: currentUserID)) == false {
-                                HStack {
-                                    VStack(alignment: .leading) {
-                                        Text(opponentUser.fullName ?? "No name")
-                                            .font(.footnote)
-                                        Text( message.text ?? "No text")
-                                            .bold()
-                                            .padding(10)
-                                            .foregroundColor(Color.white)
-                                            .background(Color.gray)
-                                            .cornerRadius(20)
+                        HStack {
+                            Spacer()
+                            LazyVStack(alignment: .leading) {
+                                ForEach(dataSource.messages.reversed(), id: \.self) { message in
+                                    if message.senderID != currentUserID, message.readIDs?.contains(NSNumber(value: currentUserID)) == false {
+                                        HStack {
+                                            VStack(alignment: .leading) {
+                                                Text(opponentUser.fullName ?? "No name")
+                                                    .font(.footnote)
+                                                Text( message.text ?? "No text")
+                                                    .bold()
+                                                    .padding(10)
+                                                    .foregroundColor(Color.white)
+                                                    .background(Color.gray)
+                                                    .cornerRadius(20)
+                                            }
+                                        }
+                                        .flip()
+                                    } else {
+                                        HStack {
+                                            Spacer()
+                                            VStack(alignment: .leading) {
+                                                 Text("You")
+                                                    .font(.footnote)
+                                                 Text( message.text ?? "No text")
+                                                    .bold()
+                                                    .padding(10)
+                                                    .foregroundColor(Color.white)
+                                                    .background(Color.blue)
+                                                    .cornerRadius(20)
+                                            }
+                                        }
+                                        .flip()
                                     }
                                 }
-                                .flip()
-                            } else {
-                                HStack {
-                                    Spacer()
-                                    VStack(alignment: .trailing) {
-                                        Text("You")
-                                            .font(.footnote)
-                                        Text( message.text ?? "No text")
-                                            .bold()
-                                            .padding(10)
-                                            .foregroundColor(Color.white)
-                                            .background(Color.blue)
-                                            .cornerRadius(20)
-                                    }
-                                }
-                                .flip()
                             }
+                            Spacer()
                         }
                     }
                     .flip()
-                    }
                     Spacer()
                     HStack {
                         TextField("Message...", text: $composedMessage)
