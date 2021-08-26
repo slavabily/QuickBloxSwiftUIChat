@@ -44,7 +44,6 @@ struct DialogsView: View {
     }
     
     var body: some View {
-        NavigationView {
             List {
                 ForEach(chatStorage.dialogs, id: \.self) { dialog in
                     Text(dialog.name!)
@@ -56,6 +55,7 @@ struct DialogsView: View {
                     deleteDialogs(at: $0)
                 }
             }
+            .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading:
                                     Button(action: {
                                         didTapLogout()
@@ -86,7 +86,6 @@ struct DialogsView: View {
             .sheet(item: $dialogID) { _ in
                 ChatView(dialogID: $dialogID, chatStorage: chatStorage)
             }
-        }
     }
     
     func deleteDialogs(at offsets: IndexSet) {

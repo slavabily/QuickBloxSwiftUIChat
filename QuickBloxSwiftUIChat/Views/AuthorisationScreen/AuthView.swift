@@ -46,24 +46,21 @@ struct AuthView: View {
                         TextField("", text: $displayName)
                     }
                 }
-                
-                Button("Login") {
-                    signUp(fullName: displayName, login: login)
-                }
-                .font(.headline)
-                .padding()
-                .padding([.leading, .trailing], 50)
-                .foregroundColor(.white)
-                .background(Color.blue)
-                .cornerRadius(30)
-                .position(x: 180 ,y: 25)
+                NavigationLink(destination: DialogsView(), isActive: $dialogsViewIsPresented) {
+                    Button("Login") {
+                        signUp(fullName: displayName, login: login)
+                    }
+                    .font(.headline)
+                    .padding()
+                    .padding([.leading, .trailing], 50)
+                    .foregroundColor(.white)
+                    .background(Color.blue)
+                    .cornerRadius(30)
+                    .position(x: 180 ,y: 25)
+                }   
             }
             .navigationBarTitle("Enter to chat", displayMode: .inline)
             .blueNavigation
-            .sheet(isPresented: $dialogsViewIsPresented, content: {
-                DialogsView()
-                    .allowAutoDismiss(false)
-            })
         }
         
     }

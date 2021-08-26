@@ -110,7 +110,6 @@ struct ChatView: View {
                     .navigationBarBackButtonHidden(true)
                     .blueNavigation
                     .onAppear {
-//                        self.dialog = chatManager.storage.dialog(withID: dialogID)
                         dialog = chatStorage.dialog(withID: dialogID)
                         print("The current dialog is: \(dialog!)")
                         
