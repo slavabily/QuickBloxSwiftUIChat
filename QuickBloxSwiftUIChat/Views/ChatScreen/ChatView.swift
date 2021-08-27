@@ -21,7 +21,7 @@ struct ChatView: View {
     
     private let chatManager = ChatManager.instance
     
-    @Binding var dialogID: String!
+    var dialogID: String!
     
     @State private var dialog: QBChatDialog?
     
@@ -38,8 +38,7 @@ struct ChatView: View {
     let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
  
     var body: some View {
-            NavigationView {
-                VStack {
+                 VStack {
                     ScrollView {
                         HStack {
                             Spacer()
@@ -91,6 +90,7 @@ struct ChatView: View {
                     }
                     .frame(minHeight: CGFloat(50)).padding()
                 }
+                .navigationBarBackButtonHidden(true)
                     .navigationBarTitleDisplayMode(.inline)
                     .toolbar {
                         ToolbarItem(placement: .principal) {
@@ -125,9 +125,7 @@ struct ChatView: View {
                     .onReceive(timer) { time in
                      loadMessages()
                     }
-                
-            }       
-     }
+    }
     
     //MARK: Actions
     private func didPressSend() {
@@ -217,6 +215,7 @@ struct ChatView: View {
 
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatView(dialogID: .constant("dialogID"), chatStorage: ChatStorage())
+        let chatStorage = ChatStorage()
+        ChatView(dialogID: chatStorage.dialogs[0].id, chatStorage: ChatStorage())
     }
 }

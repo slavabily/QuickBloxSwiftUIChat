@@ -62,7 +62,6 @@ struct AuthView: View {
             .navigationBarTitle("Enter to chat", displayMode: .inline)
             .blueNavigation
         }
-        
     }
     
     //MARK: - Internal Methods

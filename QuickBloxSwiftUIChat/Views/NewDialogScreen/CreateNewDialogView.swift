@@ -78,7 +78,7 @@ struct CreateNewDialogView: View {
             .sheet(isPresented: $chatViewIsShown, onDismiss: {
                 presentationMode.wrappedValue.dismiss()
             }, content: {
-                ChatView(dialogID: $dialogID, chatStorage: chatStorage)
+                ChatView(dialogID: dialogID, chatStorage: chatStorage)
                     .allowAutoDismiss { false }
             })
             .blueNavigation

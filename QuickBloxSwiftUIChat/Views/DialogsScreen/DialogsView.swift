@@ -33,8 +33,7 @@ struct DialogsView: View {
     @StateObject var chatStorage = ChatStorage()
     
     @State var cndvIsPresented = false
-    @State private var dialogID: String?
-    
+ 
     private var navigationTitle: String {
         let currentUser = Profile()
         guard currentUser.isFull == true else {
@@ -46,10 +45,9 @@ struct DialogsView: View {
     var body: some View {
             List {
                 ForEach(chatStorage.dialogs, id: \.self) { dialog in
-                    Text(dialog.name!)
-                        .onTapGesture {
-                            dialogID = dialog.id
-                        }
+                    NavigationLink(destination: ChatView(dialogID: dialog.id, chatStorage: chatStorage)) {
+                        Text(dialog.name!)
+                    }
                 }
                 .onDelete {
                     deleteDialogs(at: $0)
@@ -82,9 +80,6 @@ struct DialogsView: View {
             }
             .sheet(isPresented: $cndvIsPresented) {
                 CreateNewDialogView(chatStorage: chatStorage)
-            }
-            .sheet(item: $dialogID) { _ in
-                ChatView(dialogID: $dialogID, chatStorage: chatStorage)
             }
     }
     
