@@ -75,12 +75,6 @@ struct CreateNewDialogView: View {
                     
                 }
             }
-            .sheet(isPresented: $chatViewIsShown, onDismiss: {
-                presentationMode.wrappedValue.dismiss()
-            }, content: {
-                ChatView(dialogID: dialogID, chatStorage: chatStorage)
-                    .allowAutoDismiss { false }
-            })
             .blueNavigation
             
             .navigationBarBackButtonHidden(true)
@@ -92,6 +86,7 @@ struct CreateNewDialogView: View {
             }), trailing: Button(action: {
                 // create chat view here
                 createChatButtonPressed()
+                presentationMode.wrappedValue.dismiss()
             }, label: {
                  Text("Create")
             }).disabled(usersSelection.selectedUsers.isEmpty))
